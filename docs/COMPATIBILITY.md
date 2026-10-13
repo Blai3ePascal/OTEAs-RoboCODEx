@@ -37,3 +37,7 @@ Hasta ocho participantes por torneo; 32 robots en el hangar. Liga: todos contra 
 Cada encuentro tiene un número configurable de partidas. Las victorias de partida pesan 3 y los empates 1 para determinar el resultado agregado del encuentro; después se aplican los puntos configurados de victoria/empate a la clasificación. En liga/suizo, un empate permanece empate. Eliminación usa el criterio elegido: puntuación agregada de combate y después sorteo reproducible por semilla, o semilla directamente. La tabla conserva el empate del combate y el cuadro identifica al clasificado.
 
 No hay competición entre Java clásico y Python/JavaScript en un mismo motor. Bloques participan en ambos. No hay servidor multijugador, cuentas ni clasificaciones remotas. Los torneos se ejecutan con archivos aportados en el mismo navegador y sus resultados se exportan.
+
+## Grabaciones
+
+La grabación conserva como máximo 5000 fotogramas. Las partidas más largas producen una grabación parcial. La importación de repetición admite hasta 15 MB; las grabaciones muy grandes deben conservarse como archivo aunque excedan el límite del visor de esta versión. La copia JSON del proyecto guarda robots, preferencias, reglas y últimas actas, no sustituye la descarga de la repetición.

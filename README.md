@@ -2,7 +2,7 @@
 
 **Construye. Programa. Combate.** Un laboratorio de programación de carros de combate para los talleres de OTEA, con un hangar, bloques visuales, lenguajes reales y torneos del aula.
 
-**[Abrir el laboratorio](https://blai3epascal.github.io/OTEAs-RoboCODEx/)** · [Guía del profesorado](docs/TEACHER.md) · [Compatibilidad](docs/COMPATIBILITY.md) · [Referencias y diseño](docs/DESIGN.md) · [Licencias de terceros](THIRD_PARTY_NOTICES.md)
+[Informe de pruebas](docs/VALIDATION.md) · **[Abrir el laboratorio](https://blai3epascal.github.io/OTEAs-RoboCODEx/)** · [Guía del profesorado](docs/TEACHER.md) · [Compatibilidad](docs/COMPATIBILITY.md) · [Referencias y diseño](docs/DESIGN.md) · [Licencias de terceros](THIRD_PARTY_NOTICES.md)
 
 Versión **0.1.0**. El entorno funciona dentro del navegador: el alumnado no instala Java, Python, máquinas virtuales ni servicios locales. GitHub Pages sirve los archivos estáticos. La JVM, el compilador y los intérpretes se ejecutan en el navegador.
 
@@ -50,7 +50,7 @@ Para un torneo clásico, importa los `.java`, elige **Original · Java y bloques
 
 ## Guardado y privacidad
 
-Los proyectos quedan en `localStorage` con una copia de sesión en `sessionStorage`. Las preferencias pequeñas también se guardan en una cookie de sesión `oteaSession` (`SameSite=Lax`, `Secure`). El código no se introduce en cookies: su límite de tamaño no permite conservar proyectos.
+Robots, reglas de arena, preferencias y últimas actas de torneo quedan en `localStorage` con una copia de sesión en `sessionStorage`. Las preferencias pequeñas también se guardan en una cookie de sesión `oteaSession` (`SameSite=Lax`, `Secure`). El código no se introduce en cookies: su límite de tamaño no permite conservar proyectos.
 
 Cerrar una sesión no borra la copia local normal. Borrar los datos del sitio, cambiar de navegador, usar modo privado o agotar el almacenamiento puede eliminarla. La exportación JSON es la copia transportable. Los borradores incompletos se conservan aunque aún no puedan ejecutarse.
 
@@ -65,7 +65,7 @@ npm test
 python3 scripts/build.py
 ```
 
-El desarrollo necesita Node para las pruebas y Java 17/Python para empaquetar; los usuarios finales solo necesitan un navegador. No hay dependencias npm de ejecución. La acción [Pages](.github/workflows/pages.yml) ejecuta las pruebas, construye y publica `dist/` en GitHub Pages con permisos de despliegue mínimos.
+El desarrollo necesita Node para las pruebas y Java 17/Python para empaquetar; los usuarios finales solo necesitan un navegador. No hay dependencias npm de ejecución. La interfaz conserva las reglas de arena y las últimas actas; las repeticiones se descargan por separado. La acción [Pages](.github/workflows/pages.yml) ejecuta las pruebas, construye y publica `dist/` en GitHub Pages con permisos de despliegue mínimos.
 
 ## Créditos, referencias y licencias
 

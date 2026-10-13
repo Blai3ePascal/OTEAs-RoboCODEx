@@ -14,7 +14,7 @@ Robocode engine/API/modules/sample robots: Eclipse Public License 1.0. The compl
 | Apache Commons BCEL | 6.12.0 | Apache-2.0; https://commons.apache.org/proper/commons-bcel/ |
 | Apache Commons Lang | 3.20.0 | Apache-2.0; https://commons.apache.org/proper/commons-lang/ |
 | Apache Commons IO | 2.21.0 | Apache-2.0; https://commons.apache.org/proper/commons-io/ |
-| PicoContainer | 2.15.2 | BSD-3-Clause; https://github.com/picocontainer/picocontainer2 |
+| PicoContainer | 2.15.2 | BSD-3-Clause, full notice retained at `licenses/picocontainer-LICENSE.txt`; https://github.com/picocontainer/picocontainer2 |
 | Kotlin standard library | 2.4.0 | Apache-2.0; https://github.com/JetBrains/kotlin |
 | JetBrains annotations | 13.0 | Apache-2.0; https://github.com/JetBrains/java-annotations |
 | JNA and JNA Platform | 5.18.1 | Dual LGPL-2.1-or-later / Apache-2.0; see embedded META-INF/LICENSE and https://github.com/java-native-access/jna |
@@ -30,7 +30,7 @@ The build packages unmodified OpenJDK 17 class files from the build JDK into `ru
 
 ## Browser runtimes
 
-**CheerpJ 4.3** — Copyright Leaning Technologies. https://cheerpj.com/ . The loader and runtime are fetched from `https://cjrtnc.leaningtech.com/4.3/loader.js`; they are not copied to this repository. Use is subject to the CheerpJ Community License described at https://cheerpj.com/docs/licensing . This is a public FOSS application with appropriate credits. Community use is not equivalent to permission to self-host or redistribute CheerpJ. Commercial, organizational or institutional uses outside its scope must be assessed with Leaning Technologies. Open-source notices for its Java runtime: https://cheerpj.com/docs/opensource . The application does not suppress vendor licensing notices.
+**CheerpJ 4.3** — Copyright Leaning Technologies. https://cheerpj.com/ . The loader and runtime are fetched from `https://cjrtnc.leaningtech.com/4.3/loader.js`; they are not copied to this repository. Use is subject to the CheerpJ Community License described at https://cheerpj.com/docs/licensing . This is a public FOSS application with appropriate credits. Community use is not equivalent to permission to self-host or redistribute CheerpJ. Commercial, organizational or institutional uses outside its scope must be assessed with Leaning Technologies. Open-source notices for its Java runtime: https://cheerpj.com/docs/opensource . The application retains the vendor runtime and credits Leaning Technologies in its resources and README.
 
 **Pyodide 0.27.7** — Copyright the Pyodide contributors and Mozilla; MPL-2.0 with notices for embedded components, including CPython/PSF and Emscripten. Loaded from `https://cdn.jsdelivr.net/pyodide/v0.27.7/full/` on demand. Upstream license retained at `licenses/pyodide-0.27.7-LICENSE`; source and all component notices: https://github.com/pyodide/pyodide/tree/0.27.7 . This project does not modify Pyodide or CPython.
 

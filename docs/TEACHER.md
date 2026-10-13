@@ -32,4 +32,4 @@ No uses la posición del torneo como una nota automática: un robot aleatorio o 
 
 ## Salir sin perder el trabajo
 
-En **Materiales → Tus proyectos** descarga el JSON. Para el robot individual, descarga su Java/Python/JS en el taller. Para actas, exporta el CSV. Borrar los datos del navegador elimina borradores y distintivos. Las repeticiones son instantáneas visuales: no contienen todos los programas ni sustituyen la copia del proyecto.
+En **Materiales → Tus proyectos** descarga el JSON. Para el robot individual, descarga su Java/Python/JS en el taller. Para actas, exporta el CSV. Borrar los datos del navegador elimina borradores y distintivos. Las reglas de arena y las últimas actas se recuperan al volver a abrir la web. Las repeticiones son instantáneas visuales: no contienen todos los programas ni sustituyen la copia del proyecto.

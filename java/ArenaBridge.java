@@ -71,7 +71,7 @@ public final class ArenaBridge {
     boolean comma=false;
     for(IRobotSnapshot r:t.getRobots()) {
       if(comma)s.append(',');comma=true;
-      s.append("{\"id\":").append(r.getRobotIndex()).append(",\"name\":").append(quote(r.getVeryShortName())).append(",\"x\":").append(r.getX()).append(",\"y\":").append(r.getY()).append(",\"heading\":").append(r.getBodyHeading()*180/Math.PI).append(",\"gun\":").append(r.getGunHeading()*180/Math.PI).append(",\"radar\":").append(r.getRadarHeading()*180/Math.PI).append(",\"energy\":").append(r.getEnergy()).append(",\"heat\":").append(r.getGunHeat()).append(",\"alive\":").append(!r.getState().toString().equals("DEAD")).append(",\"color\":").append(quote(String.format("#%06x",r.getBodyColor()&0xffffff))).append('}');
+      s.append("{\"id\":").append(r.getRobotIndex()).append(",\"name\":").append(quote(r.getVeryShortName().replace("*",""))).append(",\"x\":").append(r.getX()).append(",\"y\":").append(r.getY()).append(",\"heading\":").append(r.getBodyHeading()*180/Math.PI).append(",\"gun\":").append(r.getGunHeading()*180/Math.PI).append(",\"radar\":").append(r.getRadarHeading()*180/Math.PI).append(",\"energy\":").append(r.getEnergy()).append(",\"heat\":").append(r.getGunHeat()).append(",\"alive\":").append(!r.getState().toString().equals("DEAD")).append(",\"color\":").append(quote(String.format("#%06x",r.getBodyColor()&0xffffff))).append('}');
     }
     s.append("],\"bullets\":[");comma=false;
     for(IBulletSnapshot b:t.getBullets()) {
@@ -86,16 +86,16 @@ public final class ArenaBridge {
   }
   private static String battleInternal(String names, int rounds, int width, int height, int turns, double cooling, long inactivity) throws Exception {
     maxTurns=turns;
-    if(engine!=null){engine.close();engine=null;}
-    engine=new RobocodeEngine(home);engine.setVisible(false);
+    if(engine==null){engine=new RobocodeEngine(home);engine.setVisible(false);}
     final boolean[] capped={false};
     final String[] result={""};
     final java.util.concurrent.CountDownLatch finished=new java.util.concurrent.CountDownLatch(1);
-    engine.addBattleListener(new BattleAdaptor(){
+    BattleAdaptor listener=new BattleAdaptor(){
       public void onTurnEnded(TurnEndedEvent event) {
         ITurnSnapshot t=event.getTurnSnapshot();
-        if(t.getTurn()%2==0)send(frame(t));
-        if(t.getTurn()>=maxTurns&&!capped[0]){capped[0]=true;engine.abortCurrentBattle();finished.countDown();}
+        if(capped[0])return;
+        send(frame(t));
+        if(t.getTurn()>=maxTurns&&!capped[0]){capped[0]=true;finished.countDown();}
       }
       public void onBattleError(BattleErrorEvent e){send("{\"type\":\"error\",\"message\":"+quote(e.getError())+"}");}
       public void onBattleCompleted(BattleCompletedEvent event) {
@@ -104,9 +104,10 @@ public final class ArenaBridge {
           if(comma)s.append(',');comma=true;
           s.append("{\"name\":").append(quote(r.getTeamLeaderName())).append(",\"score\":").append(r.getScore()).append(",\"survival\":").append(r.getSurvival()).append(",\"damage\":").append(r.getBulletDamage()).append(",\"firsts\":").append(r.getFirsts()).append('}');
         }
-        result[0]=s.append("]}").toString();send(result[0]);finished.countDown();
+        result[0]=s.append("]}").toString();finished.countDown();
       }
-    });
+    };
+    engine.addBattleListener(listener);
     java.util.List<RobotSpecification> selected=new java.util.ArrayList<>();
     java.util.Set<String> requested=new java.util.HashSet<>(java.util.Arrays.asList(names.split(",")));
     for(RobotSpecification rs:engine.getLocalRepository())if(requested.contains(rs.getClassName()))selected.add(rs);
@@ -115,7 +116,10 @@ public final class ArenaBridge {
     BattleSpecification spec=new BattleSpecification(new BattlefieldSpecification(width,height),rounds,inactivity,cooling,0,false,robots);
     engine.runBattle(spec,false);
     if(!finished.await(120,java.util.concurrent.TimeUnit.SECONDS)&&!capped[0]){engine.abortCurrentBattle();throw new IOException("La partida JVM ha superado el tiempo de espera.");}
-    if(capped[0]){result[0]="{\"type\":\"result\",\"capped\":true,\"scores\":[]}";send(result[0]);}
+    if(capped[0])engine.abortCurrentBattle();
+    engine.waitTillBattleOver();
+    engine.removeBattleListener(listener);
+    if(capped[0]){result[0]="{\"type\":\"result\",\"capped\":true,\"scores\":[]}";send(result[0]);}else send(result[0]);
     return result[0];
   }
   public static void abort(){if(engine!=null)engine.abortCurrentBattle();}
@@ -123,7 +127,9 @@ public final class ArenaBridge {
     boot(args[0],args[1],false);
     String cp=System.getProperty("java.class.path");
     System.out.println(compile("package classroom; import robocode.*; public class TestTank extends Robot {public void run(){while(true){ahead(100);turnRight(90);turnGunRight(360);}} public void onScannedRobot(ScannedRobotEvent e){fire(2);}}",cp));
-    System.out.println(battle("classroom.TestTank,sample.SittingDuck",1,800,600,1500,0.1,450));
+    battle("classroom.TestTank,sample.SittingDuck",1,800,600,1500,0.1,450);
+    battle("classroom.TestTank,sample.SittingDuck",1,800,600,100,0.1,450);
+    battle("classroom.TestTank,sample.SittingDuck",1,800,600,100,0.1,450);
     System.exit(0);
   }
 }
