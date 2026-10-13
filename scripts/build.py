@@ -14,6 +14,19 @@ with zipfile.ZipFile(runtime/'robocode-home.zip','w',zipfile.ZIP_DEFLATED) as ou
  for name in z.namelist():
   if not name.endswith('/') and not name.startswith(('javadoc/','compilers/')): out.writestr(name,z.read(name))
 (runtime/'jars.json').write_text(json.dumps(jars))
+notices=[]
+for name in jars:
+ jar=runtime/name
+ with zipfile.ZipFile(jar) as contents:
+  saved=[]
+  for entry in contents.namelist():
+   if entry.endswith('/') or not any(v in entry.lower() for v in ['license','notice','copying','about.html']):continue
+   try:text=contents.read(entry).decode('utf-8')
+   except UnicodeDecodeError:continue
+   output=ROOT/'licenses/vendor'/name/entry.replace('/','_');output.parent.mkdir(parents=True,exist_ok=True);output.write_text(text);saved.append(str(output.relative_to(ROOT)))
+  notices.append({'file':name,'sha256':hashlib.sha256(jar.read_bytes()).hexdigest(),'notices':saved})
+(ROOT/'licenses/inventory.json').write_text(json.dumps(notices,indent=2))
+
 classes=ROOT/'build/classes'; classes.mkdir(parents=True,exist_ok=True)
 cp=os.pathsep.join(str(p) for p in runtime.glob('*.jar'))
 subprocess.run(['java','-cp',str(runtime/'ecj-3.46.0.jar'),'org.eclipse.jdt.internal.compiler.batch.Main','-17','-proc:none','-classpath',cp,'-d',str(classes),str(ROOT/'java/ArenaBridge.java')],check=True)

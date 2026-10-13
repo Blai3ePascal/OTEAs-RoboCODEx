@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- This module was also published with a richer model, Gradle metadata,  -->
+  <!-- which should be used instead. Do not delete the following line which  -->
+  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+  <!-- that they should prefer consuming it instead. -->
+  <!-- do_not_remove: published-with-gradle-metadata -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.robocode</groupId>
+  <artifactId>codesize</artifactId>
+  <version>1.3.1</version>
+  <name>Codesize</name>
+  <description>Codesize is a tool for calculating the bytecode size of a Java class file, ZIP/JAR archive</description>
+  <url>https://robocode.sourceforge.io/</url>
+  <licenses>
+    <license>
+      <name>Eclipse Public License v1.0 (EPL)</name>
+      <url>https://robocode.sourceforge.io/license/epl-v10.html</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Christian D. Schnell</name>
+    </developer>
+    <developer>
+      <id>flemming-n-larsen</id>
+      <name>Flemming N. Larsen</name>
+      <email>flemming.n.larsen@gmail.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git@github.com:robo-code/robocode.git</connection>
+    <developerConnection>scm:git:ssh:git@github.com:robo-code/robocode.git</developerConnection>
+    <url>https://github.com/robo-code/robocode</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.bcel</groupId>
+      <artifactId>bcel</artifactId>
+      <version>6.11.0</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+</project>

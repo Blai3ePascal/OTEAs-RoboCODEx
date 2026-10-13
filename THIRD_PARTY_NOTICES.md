@@ -20,7 +20,7 @@ Robocode engine/API/modules/sample robots: Eclipse Public License 1.0. The compl
 | JNA and JNA Platform | 5.18.1 | Dual LGPL-2.1-or-later / Apache-2.0; see embedded META-INF/LICENSE and https://github.com/java-native-access/jna |
 | OSGi service prefs | 1.1.2 | Apache-2.0; embedded META-INF/LICENSE/NOTICE |
 | OSGi annotations | 8.0.1 | Apache-2.0; embedded META-INF/LICENSE/NOTICE |
-| CodeSize | 1.3.1 | License and copyright as provided by the original Robocode distribution; upstream metadata and notices preserved, not relicensed MIT. See https://central.sonatype.com/artifact/net.sf.robocode/codesize/1.3.1 |
+| CodeSize | 1.3.1 | EPL-1.0, confirmed by the upstream Maven POM; copyright and original notices preserved. See https://central.sonatype.com/artifact/net.sf.robocode/codesize/1.3.1 |
 
 `licenses/vendor/` preserves available license/notice/about files extracted from dependencies; `licenses/inventory.json` identifies JAR files by SHA-256 and maps their extracted notices. Where an upstream JAR omits a license text, supplementary upstream license copies or links are supplied. Original contents remain in the installer. Changes to EPL components, if made later, must follow their source and notice requirements. Proprietary native functionality is not required to install anything on users' computers.
 
