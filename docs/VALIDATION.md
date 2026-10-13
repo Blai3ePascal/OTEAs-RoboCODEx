@@ -20,6 +20,7 @@ Fecha: 13 de octubre de 2026.
 | Suizo de 3 participantes y 2 rondas: reparte descansos distintos | PASS | Chrome sobre la web desplegada |
 | Eliminación de 4 participantes: 3 encuentros y desempates identificados | PASS | Chrome sobre la web desplegada |
 | Combate Java real en CheerpJ: 300 turnos, movimiento, disparos, energías 81/61 y empate por límite | PASS | Chrome sobre la web desplegada |
+| Torneo Java: dos partidas consecutivas, empate y un punto por participante | PASS | Chrome sobre la web desplegada |
 | GitHub Pages | PASS | GitHub Actions, despliegue público |
 
 La prueba del motor original en navegador detectó dos diferencias respecto a la JVM de escritorio: ECJ necesitaba símbolos estándar explícitos y Robocode necesita inicializar un contexto AWT. Estas correcciones se incluyen en el adaptador y la página JVM. El combate posterior en navegador ha finalizado correctamente, con instantáneas del motor original y empate al alcanzar el límite configurado. No se identifica un PASS de escritorio con un PASS de navegador.

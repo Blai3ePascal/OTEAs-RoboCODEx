@@ -6,3 +6,9 @@ runtime/*.zip
 runtime/jars.json
 research/
 *.log
+
+__pycache__/
+*.pyc
+runtime/jdk17-origin.json
+licenses/openjdk17-runtime/
+licenses/vendor/
