@@ -31,7 +31,7 @@ La parada por límite se solicita fuera del callback del turno del motor. La pru
 
 ## Actualización 0.2.0: salas y personalización
 
-- 29 pruebas automáticas correctas: las 18 anteriores y 11 adicionales de mapas, personalización y servicio con SQLite real.
+- 30 pruebas automáticas correctas: las 18 anteriores y 12 adicionales de mapas, personalización y servicio con SQLite real.
 - 20 mapas distintos, campo libre predeterminado, conectividad con margen de tanque y 100 semillas de ocho tanques por mapa (16 000 posiciones seguras). Rechazo de un recinto personalizado cerrado.
 - API publicada comprobada con una sala efímera: creación, contraseña errónea, entrada desde otra sesión, inscripción, código visible sólo al organizador, permiso de inicio, cierre de inscripción durante la partida, fotograma compartido, resultado con alias y reapertura. Limpieza al terminar.
 - Control de versión probado con ocho inscripciones simultáneas. Límites de tamaño, permisos, compatibilidad de motor, caducidad y límite de intentos comprobados.
@@ -40,3 +40,5 @@ La parada por límite se solicita fuera del callback del turno del motor. La pru
 - Interfaz publicada: creación de sala y entrada desde dos pestañas independientes, competidor automático del hangar más alumno inscrito, inicio automático al llegar a dos, partida conjunta de 100 turnos en Almacén y recepción del resultado y alias.
 - Edición visual comprobada desde la interfaz: nombre, creador y colores de torreta, orugas, cubierta, cañón, boca, radar y bordes.
 - Correcciones derivadas de esta prueba: sincronización de motor, mapa y fondo en espectadores, cierre persistente del cartel del resultado y reapertura sin lanzar inmediatamente otra batalla automática. El motor original recibe la identidad Java completa para separar clases con el mismo nombre en paquetes distintos.
+
+- La edición de reglas mantiene un borrador mientras se escribe y serializa sus cambios, para que la actualización periódica de sala no restaure un número antiguo ni pierda cambios rápidos de mapa/fondo. El cliente descarta respuestas de versiones antiguas.
