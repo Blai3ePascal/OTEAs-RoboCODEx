@@ -23,6 +23,8 @@ jobs:
           distribution: temurin
           java-version: '17'
       - run: npm test
+      - name: Published room service smoke test
+        run: node scripts/verify_rooms.mjs
       - run: python3 scripts/build.py
       - name: Original Java engine smoke test
         run: |

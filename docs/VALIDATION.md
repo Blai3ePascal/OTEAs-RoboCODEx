@@ -28,3 +28,11 @@ La prueba del motor original en navegador detectó dos diferencias respecto a la
 No se han realizado evaluación pedagógica con alumnado, auditoría de accesibilidad, pruebas con lectores de pantalla ni una matriz de dispositivos/redes escolares. No se afirma compatibilidad completa de equipos, archivos auxiliares, bibliotecas externas u otros SDK como Tank Royale. Véase COMPATIBILITY.md.
 
 La parada por límite se solicita fuera del callback del turno del motor. La prueba secuencial evita que una parada bloquee el siguiente encuentro.
+
+## Actualización 0.2.0: salas y personalización
+
+- 29 pruebas automáticas correctas: las 18 anteriores y 11 adicionales de mapas, personalización y servicio con SQLite real.
+- 20 mapas distintos, campo libre predeterminado, conectividad con margen de tanque y 100 semillas de ocho tanques por mapa (16 000 posiciones seguras). Rechazo de un recinto personalizado cerrado.
+- API publicada comprobada con una sala efímera: creación, contraseña errónea, entrada desde otra sesión, inscripción, código visible sólo al organizador, permiso de inicio, cierre de inscripción durante la partida, fotograma compartido, resultado con alias y reapertura. Limpieza al terminar.
+- Control de versión probado con ocho inscripciones simultáneas. Límites de tamaño, permisos, compatibilidad de motor, caducidad y límite de intentos comprobados.
+- Alias y colores por pieza comprobados en validación, instantáneas y puntuación; preferencias conservan la recuperación del proyecto.

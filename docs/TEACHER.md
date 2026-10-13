@@ -33,3 +33,13 @@ No uses la posición del torneo como una nota automática: un robot aleatorio o 
 ## Salir sin perder el trabajo
 
 En **Materiales → Tus proyectos** descarga el JSON. Para el robot individual, descarga su Java/Python/JS en el taller. Para actas, exporta el CSV. Borrar los datos del navegador elimina borradores y distintivos. Las reglas de arena y las últimas actas se recuperan al volver a abrir la web. Las repeticiones son instantáneas visuales: no contienen todos los programas ni sustituyen la copia del proyecto.
+
+## Una batalla con toda la clase
+
+1. En Torneos, elige motor, mapa, fondo y turnos. Campo libre es el valor inicial.
+2. Escribe un nombre de sala y contraseña de al menos seis caracteres y pulsa Crear sala. Comparte esos dos datos con los alumnos.
+3. Cada alumno pulsa Unirme, selecciona su tanque e Inscribir mi tanque. Escribe antes su nombre y alias en Taller. Se pueden añadir robots del hangar del organizador para completar la partida (máximo ocho en total).
+4. Pulsa Iniciar batalla de sala, o elige inicio automático al alcanzar de dos a ocho tanques. Todos combaten simultáneamente en una sola partida. Mantén abierta la pestaña organizadora.
+5. Los alumnos pueden Ver batalla. Al terminar, vuelve a Torneos para resultados y CSV. Reabre la inscripción para otra partida o cierra la sala. Las salas caducan en seis horas.
+
+Si se recarga la pestaña organizadora durante el combate, pulsa Detener batalla de sala y Reabrir inscripción: no se conserva el estado de ejecución de la JVM ni de los workers. Los mapas con bloqueos funcionan en el motor Web. Java usa su motor clásico sin obstáculos; los fondos y la pintura funcionan también ahí. Los formatos de liga anteriores están en su desplegable.

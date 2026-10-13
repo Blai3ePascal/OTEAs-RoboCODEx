@@ -4,19 +4,19 @@
 
 [Informe de pruebas](docs/VALIDATION.md) · **[Abrir el laboratorio](https://blai3epascal.github.io/OTEAs-RoboCODEx/)** · [Guía del profesorado](docs/TEACHER.md) · [Compatibilidad](docs/COMPATIBILITY.md) · [Referencias y diseño](docs/DESIGN.md) · [Licencias de terceros](THIRD_PARTY_NOTICES.md)
 
-Versión **0.1.0**. El entorno funciona dentro del navegador: el alumnado no instala Java, Python, máquinas virtuales ni servicios locales. GitHub Pages sirve los archivos estáticos. La JVM, el compilador y los intérpretes se ejecutan en el navegador.
+Versión **0.2.0**. El entorno funciona dentro del navegador: el alumnado no instala Java, Python, máquinas virtuales ni servicios locales. GitHub Pages sirve los archivos estáticos. La JVM, el compilador y los intérpretes se ejecutan en el navegador.
 
 ## Qué puedes hacer
 
-- Crear un tanque, cambiar su nombre, color y chasis sin alterar sus capacidades.
+- Crear un tanque, cambiar su nombre, alias del creador, colores de cada pieza y chasis sin alterar sus capacidades.
 - Programar con piezas encajables: movimiento, cuerpo, cañón, radar, disparos, esperas, repetición, bucles y condiciones de energía. Incluye eventos al detectar, colisionar y recibir un disparo.
 - Ver el Java generado por los bloques y descargar un `.java` compatible con Robocode clásico.
 - Editar, importar y validar programas **Java reales**. Eclipse ECJ compila el código y **Robocode 1.11.1 sin modificar** ejecuta las partidas mediante una **JVM Java 17 de CheerpJ**.
 - Programar en **Python real** (CPython/Pyodide) o **JavaScript real** (worker del navegador), con una API de órdenes asíncronas para el motor educativo web.
 - Ejecutar partidas de hasta ocho participantes, observar energía y movimiento, pausar la reproducción y avanzar por turnos. El campo es cuadrado y mantiene las coordenadas de Robocode.
-- Personalizar escenarios del motor web con obstáculos, tres ambientaciones y semillas reproducibles.
+- Personalizar escenarios del motor web con 20 mapas, ocho fondos y semillas reproducibles.
 - Completar seis misiones verificadas mediante telemetría y un reto diario generado con una semilla común para la fecha de Madrid.
-- Organizar liga, suizo o eliminación directa; ajustar turnos, partidas por encuentro y puntos de victoria/empate; importar robots y exportar resultados CSV.
+- Reunir a la clase en salas con contraseña para una batalla conjunta; conservar liga, suizo o eliminación directa; ajustar turnos, partidas por encuentro y puntos de victoria/empate; importar robots y exportar resultados CSV.
 - Exportar y reproducir partidas, exportar proyectos completos y recuperar borradores.
 - Regular efectos, fondo, estelas, radar, victoria y sonido; activar modo calma, texto grande y alto contraste. Se respeta `prefers-reduced-motion`.
 
@@ -85,3 +85,23 @@ El desarrollo necesita Node para las pruebas y Java 17/Python para empaquetar; l
 El código y los SVG nuevos de este proyecto tienen **licencia MIT**. Los JPG/PNG históricos procedentes de la web UCM conservan sus titulares y no se relicencian como MIT. Se reutilizan en el contexto de la actividad solicitado por su organizador; no se ha identificado una licencia abierta independiente para esas imágenes. Los terceros incluidos en Robocode mantienen sus propias licencias. Consulta [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) y el inventario de avisos extraídos de los JAR.
 
 No se modifica el código del motor Robocode: el adaptador llama a su API pública de control y representa sus instantáneas con una nueva interfaz. Si se modifica en el futuro un componente EPL, deben conservarse avisos y cumplirse las obligaciones de esa licencia para las modificaciones distribuidas.
+
+## Salas del aula y batalla conjunta
+
+El modo principal de Torneos reúne entre dos y ocho tanques en una sola partida. Se puede jugar localmente con la selección del hangar o crear una sala compartida por nombre y contraseña; los alumnos se unen desde sus propios navegadores e inscriben su robot. El organizador puede añadir competidores automáticos, retirarlos, elegir motor, mapa, fondo y límite de turnos, y comenzar manualmente o cuando se alcanza el número de inscritos elegido. La inscripción se cierra al comenzar. Los formatos anteriores de liga, suizo y eliminación siguen en «Formatos de liga anteriores».
+
+La sala usa un pequeño servicio Worker con D1: [servicio de salas](https://otea-robocodex-salas.jammy-mochi-4804.chatgpt.site), separado de los archivos estáticos de GitHub Pages. Su código está en `service/rooms-worker.js` y el esquema en `migrations/0000_rooms.sql`. La web conserva su dirección y no requiere instalaciones en los ordenadores. El organizador ejecuta y compila los robots en su navegador; el servicio sólo almacena temporalmente las inscripciones y transmite el último fotograma y el resultado. Los espectadores reciben actualizaciones aproximadamente cada 1–2 segundos. La pestaña del organizador debe permanecer abierta. Si se interrumpe, puede recuperar su sesión, detener la batalla de sala y reabrir la inscripción. No se reanuda automáticamente una simulación interrumpida.
+
+Las salas caducan a las seis horas y el organizador puede cerrarlas antes. La contraseña se verifica con PBKDF2-SHA256, sal aleatoria y 100 000 iteraciones. Los tokens son aleatorios, se almacenan como hashes en servidor y la sesión del navegador se guarda en sessionStorage; la contraseña no se guarda. Hay límites de intentos, tamaño y participantes, y actualización con control de versión para evitar perder inscripciones simultáneas. La pertenencia a una sala no permite iniciar, configurar, retirar rivales ni publicar resultados: sólo el organizador tiene esos permisos. Los resultados proceden del navegador del organizador, no de un árbitro independiente; este modo es para talleres y encuentros de aula.
+
+Al inscribir un tanque se comparten su código, nombre y alias con el organizador durante la vigencia de la sala. Los otros alumnos reciben metadatos, fotogramas y resultados, sin acceso al código de sus compañeros. Usa alias cuando sea conveniente; no se solicitan cuentas, correos ni datos del centro. El resto del proyecto permanece en el navegador.
+
+## Mapas y personalización
+
+Hay **20 mapas preconfigurados**, incluido el campo libre predeterminado. Los demás combinan cajas, pasillos, columnas y estructuras abiertas en L, T y H. Se certifica la conectividad en una cuadrícula de 10 píxeles con margen de tanque de 22 píxeles; también se rechazan mapas personalizados con zonas cerradas antes de iniciar una batalla. Las posiciones iniciales dejan margen respecto de obstáculos y al menos 80 píxeles entre centros de tanques. Las pruebas cubren los 20 mapas con 100 semillas y ocho tanques: 16 000 posiciones iniciales. Una colisión posterior causada por el programa no implica que el mapa esté cerrado.
+
+Los mapas con obstáculos pertenecen al motor educativo web (bloques, Python y JavaScript). El motor Java original sigue utilizando su campo libre; la interfaz lo indica y desactiva el mapa. Los ocho fondos procedurales originales funcionan en ambos motores y en partidas normales y de sala. Cada tanque permite colorear carrocería, orugas, dibujo de orugas, cubierta, torreta, cañón, boca, radar y bordes. Son cambios visuales, sin ventajas. El alias del creador acompaña al tanque en pista, resultados, exportaciones y cartel de victoria. Se añaden opciones de cuadrícula, barras de energía, alias en pista y acento de interfaz. Las preferencias y colores conservan el guardado local y la exportación del proyecto.
+
+## Pruebas de salas
+
+`npm test` incluye pruebas del servicio con SQLite real: permisos, contraseñas, concurrencia de ocho inscripciones, límites, caducidad, reapertura, compatibilidad y transmisión de resultados. `node scripts/verify_rooms.mjs` prueba una sala efímera contra el servicio publicado y la elimina al terminar. GitHub Actions exige ambas comprobaciones antes de publicar GitHub Pages, además de la compilación y las partidas Java originales consecutivas.
