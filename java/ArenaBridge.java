@@ -57,7 +57,14 @@ public final class ArenaBridge {
     };
     boolean ok=compiler.compile(new String[]{"-17","-encoding","UTF-8","-proc:none","-classpath",classPath+File.pathSeparator+robots.getAbsolutePath(),"-d",robots.getAbsolutePath(),file.getAbsolutePath()});
     if(!ok)return "ERROR:\n"+errors.toString()+log.toString();
-    return "OK:"+(pkg.isEmpty()?"":pkg+".")+name;
+    String fullName=(pkg.isEmpty()?"":pkg+".")+name;
+    try(java.net.URLClassLoader loader=new java.net.URLClassLoader(new java.net.URL[]{robots.toURI().toURL()},ArenaBridge.class.getClassLoader())) {
+      Class<?> type=Class.forName(fullName,false,loader);
+      if(!robocode.Robot.class.isAssignableFrom(type)&&!robocode.JuniorRobot.class.isAssignableFrom(type))return "ERROR: la clase debe ser un robot Robocode (Robot o AdvancedRobot).";
+      if(java.lang.reflect.Modifier.isAbstract(type.getModifiers()))return "ERROR: el robot no puede ser abstracto.";
+      type.getConstructor();
+    }catch(Throwable invalid){return "ERROR: robot no válido: "+invalid.toString();}
+    return "OK:"+fullName;
   }
   private static String frame(ITurnSnapshot t) {
     StringBuilder s=new StringBuilder("{\"type\":\"frame\",\"tick\":").append(t.getTurn()).append(",\"round\":").append(t.getRound()).append(",\"robots\":[");

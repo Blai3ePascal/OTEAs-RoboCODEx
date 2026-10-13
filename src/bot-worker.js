@@ -17,3 +17,5 @@ onmessage=async({data})=>{if(data.type==='ack'){state=data.state||state;events.p
   postMessage({type:'ready'});await py.runPythonAsync('await run(robot)');
  }else throw Error('Lenguaje no reconocido.');postMessage({type:'finished'});
  }catch(e){postMessage({type:'error',message:String(e.message||e)});}};
+
+self.onunhandledrejection=e=>{e.preventDefault();postMessage({type:'error',message:String(e.reason?.message||e.reason||'Orden sin await')});};
