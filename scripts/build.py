@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-import pathlib, zipfile, subprocess, os, shutil, json, hashlib
+import pathlib, zipfile, subprocess, os, shutil, json, hashlib, re
 ROOT=pathlib.Path(__file__).resolve().parent.parent
 setup=ROOT/'vendor/robocode-1.11.1-setup.jar'
 if not setup.exists(): setup=ROOT.parent/'upload/robocode-1.11.1-setup.jar'
@@ -27,8 +27,10 @@ for name in jars:
   notices.append({'file':name,'sha256':hashlib.sha256(jar.read_bytes()).hexdigest(),'notices':saved})
 (ROOT/'licenses/inventory.json').write_text(json.dumps(notices,indent=2))
 
-classes=ROOT/'build/classes'; classes.mkdir(parents=True,exist_ok=True)
-cp=os.pathsep.join(str(p) for p in runtime.glob('*.jar'))
+classes=ROOT/'build/classes'
+if classes.exists():shutil.rmtree(classes)
+classes.mkdir(parents=True,exist_ok=True)
+cp=os.pathsep.join(str(runtime/name) for name in jars)
 subprocess.run(['java','-cp',str(runtime/'ecj-3.46.0.jar'),'org.eclipse.jdt.internal.compiler.batch.Main','-17','-proc:none','-classpath',cp,'-d',str(classes),str(ROOT/'java/ArenaBridge.java'),str(ROOT/'java/JdkSymbols.java')],check=True)
 subprocess.run(['java','-cp',str(classes),'otea.JdkSymbols',str(runtime/'jdk17-symbols.jar')],check=True)
 java_home=pathlib.Path(shutil.which('java')).resolve().parent.parent
@@ -48,6 +50,16 @@ dist.mkdir()
 for name in ['index.html','jvm.html','styles.css','LICENSE','THIRD_PARTY_NOTICES.md']:
  shutil.copy2(ROOT/name,dist/name)
 for name in ['src','assets','runtime','licenses','docs']:shutil.copytree(ROOT/name,dist/name)
+revision=hashlib.sha256(b''.join(f.read_bytes() for f in sorted((ROOT/'src').glob('*.js')))+(ROOT/'java/ArenaBridge.java').read_bytes()).hexdigest()[:12]
+bridge_name='arena-bridge-'+hashlib.sha256((runtime/'arena-bridge.jar').read_bytes()).hexdigest()[:12]+'.jar'
+(dist/'runtime/arena-bridge.jar').rename(dist/'runtime'/bridge_name)
+for f in (dist/'src').glob('*.js'):
+ text=f.read_text()
+ text=re.sub(r"(['\"])((?:\./|\.\./)[^'\"]+\.js|jvm\.html)\1",lambda m:m.group(1)+m.group(2)+'?v='+revision+m.group(1),text)
+ if f.name=='jvm.js':text=text.replace("base+'arena-bridge.jar'","base+'"+bridge_name+"'")
+ f.write_text(text)
+for name in ['index.html','jvm.html']:
+ f=dist/name;text=f.read_text().replace('src/app.js','src/app.js?v='+revision).replace('src/jvm.js','src/jvm.js?v='+revision).replace('href="styles.css"','href="styles.css?v='+revision+'"');f.write_text(text)
 manifest={str(f.relative_to(dist)):hashlib.sha256(f.read_bytes()).hexdigest() for f in dist.rglob('*') if f.is_file()}
 (dist/'manifest.json').write_text(json.dumps(manifest,indent=2))
 print('Build completo:',len(manifest),'archivos. Instalador SHA256:',hashlib.sha256(setup.read_bytes()).hexdigest())
