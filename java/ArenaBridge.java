@@ -73,7 +73,11 @@ public final class ArenaBridge {
     }
     return s.append("]}").toString();
   }
-  public static String battle(String names, int rounds, int width, int height, int turns, double cooling, long inactivity) throws Exception {
+  public static String battle(String names, int rounds, int width, int height, int turns, double cooling, long inactivity) {
+    try {return battleInternal(names,rounds,width,height,turns,cooling,inactivity);}
+    catch(Throwable error){String result="{\"type\":\"error\",\"message\":"+quote(error.toString())+"}";send(result);return result;}
+  }
+  private static String battleInternal(String names, int rounds, int width, int height, int turns, double cooling, long inactivity) throws Exception {
     maxTurns=turns;
     if(engine!=null){engine.close();engine=null;}
     engine=new RobocodeEngine(home);engine.setVisible(false);

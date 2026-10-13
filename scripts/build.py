@@ -31,6 +31,12 @@ classes=ROOT/'build/classes'; classes.mkdir(parents=True,exist_ok=True)
 cp=os.pathsep.join(str(p) for p in runtime.glob('*.jar'))
 subprocess.run(['java','-cp',str(runtime/'ecj-3.46.0.jar'),'org.eclipse.jdt.internal.compiler.batch.Main','-17','-proc:none','-classpath',cp,'-d',str(classes),str(ROOT/'java/ArenaBridge.java'),str(ROOT/'java/JdkSymbols.java')],check=True)
 subprocess.run(['java','-cp',str(classes),'otea.JdkSymbols',str(runtime/'jdk17-symbols.jar')],check=True)
+java_home=pathlib.Path(shutil.which('java')).resolve().parent.parent
+legal=java_home/'legal'
+if legal.exists():
+ for f in legal.rglob('*'):
+  if f.is_file():
+   target=ROOT/'licenses/openjdk17-runtime'/f.relative_to(legal);target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(f,target)
 version=subprocess.run(['java','-version'],capture_output=True,text=True).stderr
 (runtime/'jdk17-origin.json').write_text(json.dumps({'purpose':'Compile-time symbol lookup; never added to the execution classpath','java_version':version,'license':'GPL-2.0-only WITH Classpath-exception-2.0','source':'https://github.com/openjdk/jdk17u','sha256':hashlib.sha256((runtime/'jdk17-symbols.jar').read_bytes()).hexdigest()},indent=2))
 
