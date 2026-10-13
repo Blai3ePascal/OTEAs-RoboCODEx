@@ -24,6 +24,10 @@ Robocode engine/API/modules/sample robots: Eclipse Public License 1.0. The compl
 
 `licenses/vendor/` preserves available license/notice/about files extracted from dependencies; `licenses/inventory.json` identifies JAR files by SHA-256 and maps their extracted notices. Where an upstream JAR omits a license text, supplementary upstream license copies or links are supplied. Original contents remain in the installer. Changes to EPL components, if made later, must follow their source and notice requirements. Proprietary native functionality is not required to install anything on users' computers.
 
+## OpenJDK compiler symbols
+
+The build packages unmodified OpenJDK 17 class files from the build JDK into `runtime/jdk17-symbols.jar`, solely for Eclipse compiler symbol lookup in the browser. This file is never added to the execution classpath; the JVM runtime is supplied by CheerpJ. OpenJDK is GPL-2.0-only with Classpath Exception where indicated; retained license, additional license info and assembly exception are in `licenses/openjdk17-*`. Sources: https://github.com/openjdk/jdk17u and https://github.com/adoptium/temurin17-binaries . `runtime/jdk17-origin.json` records the actual build version and artifact SHA-256. No OpenJDK source or class bytecode is modified.
+
 ## Browser runtimes
 
 **CheerpJ 4.3** — Copyright Leaning Technologies. https://cheerpj.com/ . The loader and runtime are fetched from `https://cjrtnc.leaningtech.com/4.3/loader.js`; they are not copied to this repository. Use is subject to the CheerpJ Community License described at https://cheerpj.com/docs/licensing . This is a public FOSS application with appropriate credits. Community use is not equivalent to permission to self-host or redistribute CheerpJ. Commercial, organizational or institutional uses outside its scope must be assessed with Leaning Technologies. Open-source notices for its Java runtime: https://cheerpj.com/docs/opensource . The application does not suppress vendor licensing notices.

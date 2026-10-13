@@ -26,7 +26,7 @@ jobs:
       - run: python3 scripts/build.py
       - name: Original Java engine smoke test
         run: |
-          timeout 150 java -cp 'runtime/*' otea.ArenaBridge runtime/robocode-home.zip /tmp/otea-robocode-test > /tmp/otea-java.log 2>&1
+          timeout 150 java -Dotea.symbols=runtime/jdk17-symbols.jar -cp 'runtime/*' otea.ArenaBridge runtime/robocode-home.zip /tmp/otea-robocode-test > /tmp/otea-java.log 2>&1
           python3 scripts/verify_java.py /tmp/otea-java.log
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

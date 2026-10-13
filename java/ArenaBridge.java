@@ -7,7 +7,6 @@ import java.util.zip.*;
 import robocode.control.*;
 import robocode.control.events.*;
 import robocode.control.snapshot.*;
-import org.eclipse.jdt.core.compiler.batch.BatchCompiler;
 
 /** Runs the unmodified Robocode engine. No Java source rewriting or translation. */
 public final class ArenaBridge {
@@ -48,7 +47,15 @@ public final class ArenaBridge {
     File file=new File(path,name+".java");
     Files.write(file.toPath(), source.getBytes("UTF-8"));
     StringWriter errors=new StringWriter(), log=new StringWriter();
-    boolean ok=BatchCompiler.compile(new String[]{"-17","-encoding","UTF-8","-proc:none","-classpath",classPath+File.pathSeparator+robots.getAbsolutePath(),"-d",robots.getAbsolutePath(),file.getAbsolutePath()},new PrintWriter(log),new PrintWriter(errors),null);
+    org.eclipse.jdt.internal.compiler.batch.Main compiler = new org.eclipse.jdt.internal.compiler.batch.Main(new PrintWriter(log),new PrintWriter(errors),false) {
+      protected java.util.ArrayList<org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath> handleBootclasspath(java.util.ArrayList<String> paths,String encoding) {
+        if(System.getProperty("otea.symbols")==null)return super.handleBootclasspath(paths,encoding);
+        java.util.ArrayList<org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath> result=new java.util.ArrayList<>();
+        processPathEntries(4,result,System.getProperty("otea.symbols"),encoding,false,true);
+        return result;
+      }
+    };
+    boolean ok=compiler.compile(new String[]{"-17","-encoding","UTF-8","-proc:none","-classpath",classPath+File.pathSeparator+robots.getAbsolutePath(),"-d",robots.getAbsolutePath(),file.getAbsolutePath()});
     if(!ok)return "ERROR:\n"+errors.toString()+log.toString();
     return "OK:"+(pkg.isEmpty()?"":pkg+".")+name;
   }
