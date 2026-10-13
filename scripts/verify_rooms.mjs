@@ -9,7 +9,7 @@ async function request(path,body,session){const r=await fetch(ROOM_SERVICE+path,
 let host;
 try {
  const health=await request('/health');assert.equal(health.status,200);assert.equal(health.data.storage,true);
- const created=await request('/rooms',{action:'create',name,password,config:{map:'crates',theme:'space',maxTicks:100}});assert.equal(created.status,201,created.data.error);host=created.data;
+ const created=await request('/rooms',{action:'create',name,password,config:{map:'crates',theme:'space',maxTicks:100,autoStart:2}});assert.equal(created.status,201,created.data.error);host=created.data;
  const wrong=await request('/rooms',{action:'join',name,password:'incorrect-password'});assert.equal(wrong.status,401);
  const joined=await request('/rooms',{action:'join',name,password});assert.equal(joined.status,200);const guest=joined.data;
  const path='/rooms/'+host.room;
@@ -23,6 +23,6 @@ try {
  assert.equal((await request(path,undefined,guest)).data.frame.tick,50);
  assert.equal((await request(path+'/result',{result:{draw:true,winner:null,scores:[],winnerCreator:'Prueba OTEA'}},host)).data.status,'finished');
  assert.equal((await request(path,undefined,guest)).data.result.winnerCreator,'Prueba OTEA');
- assert.equal((await request(path+'/reset',{},host)).data.status,'waiting');
+ const reset=(await request(path+'/reset',{},host)).data;assert.equal(reset.status,'waiting');assert.equal(reset.config.autoStart,0);
  console.log('Salas publicadas: acceso, contraseña, permisos, inscripción, emisión, resultado y reapertura correctos.');
 }finally{if(host)await request('/rooms/'+host.room+'/close',{},host);}

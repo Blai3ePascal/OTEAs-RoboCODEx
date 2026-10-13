@@ -71,7 +71,7 @@ public final class ArenaBridge {
     boolean comma=false;
     for(IRobotSnapshot r:t.getRobots()) {
       if(comma)s.append(',');comma=true;
-      s.append("{\"id\":").append(r.getRobotIndex()).append(",\"name\":").append(quote(r.getVeryShortName().replace("*",""))).append(",\"x\":").append(r.getX()).append(",\"y\":").append(r.getY()).append(",\"heading\":").append(r.getBodyHeading()*180/Math.PI).append(",\"gun\":").append(r.getGunHeading()*180/Math.PI).append(",\"radar\":").append(r.getRadarHeading()*180/Math.PI).append(",\"energy\":").append(r.getEnergy()).append(",\"heat\":").append(r.getGunHeat()).append(",\"alive\":").append(!r.getState().toString().equals("DEAD")).append(",\"color\":").append(quote(String.format("#%06x",r.getBodyColor()&0xffffff))).append('}');
+      s.append("{\"id\":").append(r.getRobotIndex()).append(",\"name\":").append(quote(r.getVeryShortName().replace("*",""))).append(",\"fullName\":").append(quote(r.getName().replace("*",""))).append(",\"x\":").append(r.getX()).append(",\"y\":").append(r.getY()).append(",\"heading\":").append(r.getBodyHeading()*180/Math.PI).append(",\"gun\":").append(r.getGunHeading()*180/Math.PI).append(",\"radar\":").append(r.getRadarHeading()*180/Math.PI).append(",\"energy\":").append(r.getEnergy()).append(",\"heat\":").append(r.getGunHeat()).append(",\"alive\":").append(!r.getState().toString().equals("DEAD")).append(",\"color\":").append(quote(String.format("#%06x",r.getBodyColor()&0xffffff))).append('}');
     }
     s.append("],\"bullets\":[");comma=false;
     for(IBulletSnapshot b:t.getBullets()) {

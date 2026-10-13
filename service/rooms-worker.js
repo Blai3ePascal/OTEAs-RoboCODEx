@@ -69,7 +69,7 @@ export default {async fetch(request,env){
    }else if(action==='start'){if(state.status!=='waiting'||state.participants.length<2)fail('Se necesitan al menos dos tanques y una sala en espera.',409);state.status='running';state.frame=null;state.result=null;
    }else if(action==='frame'){if(state.status!=='running')fail('No hay partida en marcha.',409);const f=body.frame;if(!f||!Number.isInteger(f.tick)||!Array.isArray(f.robots)||f.robots.length>8||!Array.isArray(f.bullets)||f.bullets.length>1000||JSON.stringify(f).length>150000)fail('Fotograma no válido.');state.frame=f;
    }else if(action==='result'){if(state.status!=='running')fail('No hay partida en marcha.',409);if(!body.result||!Array.isArray(body.result.scores)||body.result.scores.length>8)fail('Resultado no válido.');state.result=body.result;state.status=body.result.cancelled?'cancelled':'finished';
-   }else if(action==='reset'){if(state.status==='running')fail('Detén la batalla antes de reabrir la sala.',409);state.status='waiting';state.frame=null;state.result=null;
+   }else if(action==='reset'){if(state.status==='running')fail('Detén la batalla antes de reabrir la sala.',409);state.status='waiting';state.config.autoStart=0;state.frame=null;state.result=null;
    }
    const saved=await env.DB.prepare('UPDATE rooms SET state=?,version=version+1 WHERE id=? AND version=?').bind(JSON.stringify(state),key,row.version).run();if(saved.meta.changes)return reply(publicRoom({...row,version:row.version+1},state,session));
   }fail('La sala está ocupada. Vuelve a intentarlo.',409);

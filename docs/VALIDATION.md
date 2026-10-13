@@ -1,4 +1,4 @@
-# Validación de la candidata 0.1.0
+# Validación de OTEA’s RoboCODEx 0.2.0
 
 Fecha: 13 de octubre de 2026.
 
@@ -36,3 +36,7 @@ La parada por límite se solicita fuera del callback del turno del motor. La pru
 - API publicada comprobada con una sala efímera: creación, contraseña errónea, entrada desde otra sesión, inscripción, código visible sólo al organizador, permiso de inicio, cierre de inscripción durante la partida, fotograma compartido, resultado con alias y reapertura. Limpieza al terminar.
 - Control de versión probado con ocho inscripciones simultáneas. Límites de tamaño, permisos, compatibilidad de motor, caducidad y límite de intentos comprobados.
 - Alias y colores por pieza comprobados en validación, instantáneas y puntuación; preferencias conservan la recuperación del proyecto.
+
+- Interfaz publicada: creación de sala y entrada desde dos pestañas independientes, competidor automático del hangar más alumno inscrito, inicio automático al llegar a dos, partida conjunta de 100 turnos en Almacén y recepción del resultado y alias.
+- Edición visual comprobada desde la interfaz: nombre, creador y colores de torreta, orugas, cubierta, cañón, boca, radar y bordes.
+- Correcciones derivadas de esta prueba: sincronización de motor, mapa y fondo en espectadores, cierre persistente del cartel del resultado y reapertura sin lanzar inmediatamente otra batalla automática. El motor original recibe la identidad Java completa para separar clases con el mismo nombre en paquetes distintos.
