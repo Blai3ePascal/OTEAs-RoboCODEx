@@ -42,3 +42,6 @@ La parada por límite se solicita fuera del callback del turno del motor. La pru
 - Correcciones derivadas de esta prueba: sincronización de motor, mapa y fondo en espectadores, cierre persistente del cartel del resultado y reapertura sin lanzar inmediatamente otra batalla automática. El motor original recibe la identidad Java completa para separar clases con el mismo nombre en paquetes distintos.
 
 - La edición de reglas mantiene un borrador mientras se escribe y serializa sus cambios, para que la actualización periódica de sala no restaure un número antiguo ni pierda cambios rápidos de mapa/fondo. El cliente descarta respuestas de versiones antiguas.
+
+- Comprobación final en dos pestañas: cambios rápidos a 300 turnos, campo libre y Bosque táctico llegan íntegros al espectador. Inicio manual, ejecución de JavaScript real y victoria de Echo Naranja en el turno 112, con «Creado por Equipo naranja» en ambos carteles. Cerrar el cartel del espectador permanece efectivo tras nuevas actualizaciones.
+- Capturas de la interfaz publicada: [sala y clasificación](screenshots/rooms-lobby-20261013.jpg) y [cartel de ganador](screenshots/rooms-20261013.jpg).
