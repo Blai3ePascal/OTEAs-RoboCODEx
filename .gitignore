@@ -1,0 +1,8 @@
+node_modules/
+dist/
+build/
+runtime/*.jar
+runtime/*.zip
+runtime/jars.json
+research/
+*.log
