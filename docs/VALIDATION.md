@@ -91,3 +91,5 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - 54 pruebas finales; se añade una comprobación de seguridad del dibujo cuando el tiempo del fotograma es anterior al nacimiento de una partícula. Las coordenadas siguen siendo finitas en los tres estilos.
 
 - 55 pruebas finales: el worker JavaScript apunta usando el estado exacto del evento de detección y destruye una diana inmóvil por daño real. La arena espera la recepción del lote de eventos y la primera orden de su manejador antes de continuar; así el cañón no gira durante la entrega asíncrona del evento. La misma sincronización se usa con CPython.
+
+- La carga fría de CheerpJ mostró un fallo temporal de acceso al paquete y un tiempo de compilación superior a dos minutos. El arranque fallido ya no conserva una promesa rechazada y la compilación dispone de cinco minutos antes de descartar el entorno. La validación técnica local y de GitHub sigue usando el motor original; no se equipara con la velocidad de un dispositivo escolar.
