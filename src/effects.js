@@ -15,7 +15,7 @@ export class EffectTimeline {
 }
 const wave=(seed,n)=>Math.sin(seed*7.31+n*12.7)*.5+.5;
 export function paintEffects(c,timeline,now,settings){if(!settings.effects)return;const s=effectOptions(settings),motion=settings.reducedMotion? .35:1,density=settings.reducedMotion?6:settings.effects===2?32:16;
- for(const e of timeline.active(now,s)){const elapsed=(now-e.start)/s.effectDuration,t=elapsed/1700,size=s.effectSize*motion;c.save();c.translate(e.x,800-e.y);c.globalCompositeOperation='lighter';
+ for(const e of timeline.active(now,s)){const elapsed=Math.max(0,now-e.start)/s.effectDuration,t=elapsed/1700,size=s.effectSize*motion;c.save();c.translate(e.x,800-e.y);c.globalCompositeOperation='lighter';
   if(e.kind==='death'&&s.showExplosions&&elapsed<1700){const alpha=Math.max(0,1-t),radius=(8+105*Math.sqrt(t))*size;c.globalAlpha=alpha;
    if(s.effectStyle==='pixel'){for(let n=0;n<density;n++){const a=n*2.4,r=radius*wave(e.seed,n);c.fillStyle=n%3?s.blastColor:s.sparkColor;c.fillRect(Math.cos(a)*r,Math.sin(a)*r,Math.max(2,(12-8*t)*size),Math.max(2,(12-8*t)*size));}}
    else {if(s.effectStyle==='nova'){const g=c.createRadialGradient(0,0,0,0,0,radius);g.addColorStop(0,s.sparkColor);g.addColorStop(.25,s.blastColor);g.addColorStop(1,s.blastColor+'00');c.fillStyle=g;c.beginPath();c.arc(0,0,radius,0,Math.PI*2);c.fill();}for(let k=0;k<(s.effectStyle==='rings'?4:2);k++){c.strokeStyle=k%2?s.sparkColor:s.blastColor;c.lineWidth=(5-k)*size;c.beginPath();c.arc(0,0,Math.max(1,radius-k*13*size),0,Math.PI*2);c.stroke();}}

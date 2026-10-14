@@ -1,0 +1,98 @@
+[
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "phone320",
+    "horizontalOverflow": false,
+    "panel": "Aspecto",
+    "width": 304
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "phone320",
+    "horizontalOverflow": false,
+    "panel": "Fuego y explosiones",
+    "width": 304
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "phone320",
+    "horizontalOverflow": false,
+    "panel": "Accesibilidad",
+    "width": 304
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "phone390",
+    "horizontalOverflow": false,
+    "panel": "Aspecto",
+    "width": 374
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "phone390",
+    "horizontalOverflow": false,
+    "panel": "Fuego y explosiones",
+    "width": 374
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "phone390",
+    "horizontalOverflow": false,
+    "panel": "Accesibilidad",
+    "width": 374
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "tablet768",
+    "horizontalOverflow": false,
+    "panel": "Aspecto",
+    "width": 744
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "tablet768",
+    "horizontalOverflow": false,
+    "panel": "Fuego y explosiones",
+    "width": 744
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "tablet768",
+    "horizontalOverflow": false,
+    "panel": "Accesibilidad",
+    "width": 744
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "desktop1280",
+    "horizontalOverflow": false,
+    "panel": "Aspecto",
+    "width": 900
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "desktop1280",
+    "horizontalOverflow": false,
+    "panel": "Fuego y explosiones",
+    "width": 900
+  },
+  {
+    "closeVisible": true,
+    "doneVisible": true,
+    "frame": "desktop1280",
+    "horizontalOverflow": false,
+    "panel": "Accesibilidad",
+    "width": 900
+  }
+]

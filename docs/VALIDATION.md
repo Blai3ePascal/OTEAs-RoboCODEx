@@ -78,3 +78,14 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - La destrucción se detecta también cuando el primer fotograma recibido por un espectador ya contiene un tanque muerto. Al retroceder el contador de turnos se reinician los identificadores de efectos para la siguiente partida.
 - El resultado y el siguiente encuentro esperan el tiempo visual de la explosión. No se agregan turnos ni se cambia el resultado; el modo sin efectos y la preferencia de movimiento reducido continúan inmediatamente.
 - 52 pruebas automáticas: se añade una destrucción por daño real de balas, la llegada tardía de un espectador/reinicio de partida y la duración de la transición visual.
+
+- Menú publicado: 12 comprobaciones reales en marcos de 320, 390, 768 y 1280 píxeles (tres pestañas por tamaño). Ninguna presenta desbordamiento horizontal; Cerrar y Listo permanecen dentro del viewport. [Captura del menú corregido](screenshots/settings-responsive-20261015.jpg).
+- La misión de variables también compila y ejecuta en CheerpJ, completa sus tres criterios y conserva la progresión.
+- Al agotarse un tiempo de compilación, el cliente descarta la JVM pendiente para que una nueva prueba cargue un entorno limpio. El estado deja de indicar una compilación en curso. No se modifica el motor ni el compilador originales.
+
+- La misión de métodos completa sus tres pasos en la JVM del navegador tras volver a cargar el entorno: definición y llamada, compilación real, 320 píxeles y 180° de giro. El progreso alcanza Mecánico de eventos, 1700 XP.
+- 53 pruebas automáticas finales: la práctica de métodos admite argumentos distintos de 80 y sigue exigiendo código compilado y movimiento observado; una llamada sólo en comentarios no cuenta.
+- La guía de pasos aparece antes del editor para poder leer las instrucciones al empezar la práctica.
+
+- La destrucción real de una diana Java reveló que, durante las pausas entre fotogramas de la JVM, faltaba refresco del lienzo aunque hubiese partículas activas. El lienzo ahora anima a 30 FPS también durante un combate que está esperando fotogramas, usando el reloj visual actual sin alterar la simulación.
+- 54 pruebas finales; se añade una comprobación de seguridad del dibujo cuando el tiempo del fotograma es anterior al nacimiento de una partícula. Las coordenadas siguen siendo finitas en los tres estilos.
