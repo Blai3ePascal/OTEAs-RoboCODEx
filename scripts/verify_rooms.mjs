@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {ROOM_SERVICE} from '../src/rooms.js';
 import {starterBlocks} from '../src/core.js';
 const name='QA-'+Date.now()+'-'+crypto.randomUUID().slice(0,8),password=crypto.randomUUID();
-const tank=n=>({name:n,creator:'Prueba OTEA',code:'',language:'blocks',color:'#ffb347',skin:'vanguard',colors:{radar:'#abcdef'},blocks:starterBlocks()});
+const tank=n=>({name:n,creator:'Prueba OTEA',code:'',language:'blocks',color:'#ffb347',skin:'vanguard',colors:{radar:'#abcdef'},blocks:{...starterBlocks(),robot:[{type:'back',value:40}],bulletHit:[{type:'turnGunRight',value:90}],bulletHitBullet:[{type:'back',value:20}],bulletMissed:[{type:'scan',value:0}]}});
 async function request(path,body,session){const r=await fetch(ROOM_SERVICE+path,{method:body===undefined?'GET':'POST',headers:{'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',Origin:'https://blai3epascal.github.io',...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(30000)});let data;try{data=await r.json();}catch{throw Error('El servicio no devolvió JSON · HTTP '+r.status);}return {status:r.status,data};}
 let host;
 try {
@@ -14,7 +14,7 @@ try {
  const joined=await request('/rooms',{action:'join',name,password});assert.equal(joined.status,200);const guest=joined.data;
  const path='/rooms/'+host.room;
  await request(path+'/submit',{tank:tank('QA-Nova')},host);await request(path+'/submit',{tank:tank('QA-Echo')},guest);
- assert.equal((await request(path,undefined,host)).data.participants.length,2);
+ const enrolled=(await request(path,undefined,host)).data;assert.equal(enrolled.participants.length,2);for(const event of ['robot','bulletHit','bulletHitBullet','bulletMissed'])assert.deepEqual(enrolled.participants[0].tank.blocks[event],tank('QA-Nova').blocks[event]);
  assert.equal((await request(path,undefined,guest)).data.participants[0].tank,undefined);
  assert.equal((await request(path+'/start',{},guest)).status,403);
  assert.equal((await request(path+'/start',{},host)).data.status,'running');

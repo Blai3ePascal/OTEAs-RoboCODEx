@@ -15,9 +15,9 @@ export function sanitizeTank(t){
  const color=v=>typeof v==='string'&&/^#[a-f0-9]{6}$/i.test(v);
  if(!color(t.color))fail('Color no válido.');const colors={};
  for(const [k,v] of Object.entries(t.colors||{})){if(!['body','tracks','tread','hull','turret','barrel','muzzle','radar','trim'].includes(k)||!color(v))fail('Color de pieza no válido.');colors[k]=v;}
- let count=0;const allowed=['ahead','back','turnRight','turnLeft','turnGunRight','turnGunLeft','turnRadarRight','turnRadarLeft','fire','wait','repeat','forever','ifEnergy'];
+ let count=0;const allowed=['scan','ahead','back','turnRight','turnLeft','turnGunRight','turnGunLeft','turnRadarRight','turnRadarLeft','fire','wait','repeat','forever','ifEnergy'];
  const clean=(list,depth=0)=>{if(!Array.isArray(list)||depth>10)fail('Bloques no válidos.');return list.map(b=>{if(++count>400||!b||!allowed.includes(b.type)||!Number.isFinite(Number(b.value)))fail('Bloques no válidos.');const r={type:b.type,value:Number(b.value)};if(['repeat','forever','ifEnergy'].includes(b.type))r.children=clean(b.children||[],depth+1);return r;});};
- const blocks={};for(const k of ['run','scan','wall','hit'])blocks[k]=clean(t.blocks?.[k]||[]);
+ const blocks={};for(const k of ['run','scan','wall','hit','robot','bulletHit','bulletHitBullet','bulletMissed'])blocks[k]=clean(t.blocks?.[k]||[]);
  return {id:token(),name:t.name.trim(),creator:t.creator.trim(),color:t.color,colors,skin:t.skin==='wisp'?'wisp':'vanguard',language:t.language,code:t.code,blocks};
 }
 function config(c={}){const integer=(v,d,min,max)=>Number.isInteger(v)&&v>=min&&v<=max?v:d;const maps=['classic','cross','lanes','bunker','islands','slalom','stairs','columns','zigzag','corners','twin','crates','t','l','h','diagonal','runway','plaza','gates','scatter'];return {engine:c.engine==='jvm'?'jvm':'web',map:maps.includes(c.map)?c.map:'classic',theme:['night','sand','ice','forest','space','lava','ocean','neon'].includes(c.theme)?c.theme:'night',maxTicks:integer(c.maxTicks,1800,100,10000),seed:integer(c.seed,137,0,4294967295),autoStart:integer(c.autoStart,0,2,8)};}

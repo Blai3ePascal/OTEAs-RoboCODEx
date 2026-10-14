@@ -1,1 +1,1 @@
-{"name":"oteas-robocodex","version":"0.2.0","private":true,"type":"module","description":"Laboratorio de programación de carros de combate OTEA","scripts":{"test":"node --test tests/*.test.js","build":"python3 scripts/build.py"},"license":"MIT"}
+{"name":"oteas-robocodex","version":"0.3.0","private":true,"type":"module","description":"Laboratorio de programación de carros de combate OTEA","scripts":{"test":"node --test tests/*.test.js","build":"python3 scripts/build.py"},"license":"MIT"}

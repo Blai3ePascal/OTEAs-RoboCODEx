@@ -43,3 +43,15 @@ En **Materiales → Tus proyectos** descarga el JSON. Para el robot individual, 
 5. Los alumnos pueden Ver batalla. Al terminar, vuelve a Torneos para resultados y CSV. Reabre la inscripción para otra partida o cierra la sala. Las salas caducan en seis horas.
 
 Si se recarga la pestaña organizadora durante el combate, pulsa Detener batalla de sala y Reabrir inscripción: no se conserva el estado de ejecución de la JVM ni de los workers. Los mapas con bloqueos funcionan en el motor Web. Java usa su motor clásico sin obstáculos; los fondos y la pintura funcionan también ahí. Los formatos de liga anteriores están en su desplegable.
+
+## Ruta guiada de 18 prácticas
+
+Las seis prácticas anteriores conservan sus objetivos y progreso. La ruta nueva recomienda continuar por detección con interrupción, choque entre carros, recepción de bala, impacto de bala propia, fallo, choque entre balas, condición por energía, bucles anidados e integración con obstáculos. Después hay tres ejercicios Java reales: parámetro de movimiento, variable double y método parametrizado.
+
+En Taller aparece la lista de tres pasos, comprobados mediante la traza y la telemetría. Las marcas no se activan pulsando. Al aceptar una práctica se reutiliza el tanque de entrenamiento y se conservan los demás robots. Modificar el programa y pulsar Probar en arena prepara la diana o instructor adecuado. Las soluciones razonadas permiten discutir el porqué; no sustituyen la comprobación de que se ejecuta. En las prácticas de eventos del motor web utiliza los bloques; su exportación Java sigue disponible para el motor original.
+
+El evento Recibe un disparo (`onHitByBullet`) y Golpea otro tanque (`onHitRobot`) son distintos. Golpea una pared también representa contenedores del motor web. El cañón no es el radar: detectar al este con un radar que gira solo no orienta automáticamente el cañón. Las balas propias tienen sus eventos de acertar, fallar o interceptarse.
+
+La XP existente se conserva, una práctica repetida no entrega XP otra vez y cada distintivo sólo recompensa una vez. Los niveles dan títulos y paletas visuales; no alteran energía, daño, velocidad ni reglas. La ficha descargable es un registro local de práctica para acompañar el proyecto del alumno.
+
+En Opciones puedes previsualizar una explosión sin ejecutar ni puntuar una batalla. Puedes elegir tres estilos de fuego y explosión, colores, escala, duración y activar o desactivar restos y humo. El modo calma conserva su función.

@@ -45,3 +45,18 @@ La parada por límite se solicita fuera del callback del turno del motor. La pru
 
 - Comprobación final en dos pestañas: cambios rápidos a 300 turnos, campo libre y Bosque táctico llegan íntegros al espectador. Inicio manual, ejecución de JavaScript real y victoria de Echo Naranja en el turno 112, con «Creado por Equipo naranja» en ambos carteles. Cerrar el cartel del espectador permanece efectivo tras nuevas actualizaciones.
 - Capturas de la interfaz publicada: [sala y clasificación](screenshots/rooms-lobby-20261013.jpg) y [cartel de ganador](screenshots/rooms-20261013.jpg).
+
+
+## Actualización 0.3.0: interrupciones, efectos y ruta de aprendizaje
+
+Fecha: 14 de octubre de 2026.
+
+- 49 pruebas automáticas correctas: se conservan las 30 anteriores y se añaden 19 de interrupciones, prioridad de eventos, colisiones, misiones, progresión, telemetría Java y efectos.
+- Un worker JavaScript real atiende la detección antes de terminar una orden pendiente y reanuda sus 360° completos. Una prueba adicional comprueba una interrupción de prioridad superior y evita recursión del mismo evento.
+- Las nueve soluciones nuevas de bloques cumplen los tres pasos de sus misiones durante la simulación; no se conceden por pulsar marcas ni por pegar código sin ejecutarlo.
+- ECJ compila los siete manejadores de combate generados, la orden scan() y las tres soluciones de las misiones Java contra los JAR del motor original.
+- Animaciones comprobadas con reloj visual independiente del turno: una destrucción produce una sola secuencia, continúa después del último fotograma y no se repite al redibujar. Se comprueban tres estilos y desactivación de efectos.
+- XP y distintivos se conceden una vez, conservan misiones antiguas y habilitan títulos, paletas y una ficha de evidencias. Importar una repetición no completa misiones.
+- El servicio de salas conserva las cuatro familias nuevas de eventos sin cambiar el protocolo, las contraseñas, los mapas ni las migraciones.
+
+Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con alumnado. La ficha es un registro local, no una acreditación académica.

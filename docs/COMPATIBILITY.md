@@ -41,3 +41,9 @@ No hay competición entre Java clásico y Python/JavaScript en un mismo motor. B
 ## Grabaciones
 
 La grabación conserva como máximo 5000 fotogramas. Las partidas más largas producen una grabación parcial. La importación de repetición admite hasta 15 MB; las grabaciones muy grandes deben conservarse como archivo aunque excedan el límite del visor de esta versión. La copia JSON del proyecto guarda robots, preferencias, reglas y últimas actas, no sustituye la descarga de la repetición.
+
+## Actualización de eventos 0.3.0
+
+El editor usa siete eventos de combate. Los cuatro grupos antiguos siguen válidos y los nuevos son opcionales. Los manejadores de Java siguen siendo los originales. La arena web introduce prioridades estrictas (detección 10, choque 20, pared 30, recepción 40, acierto 50, choque de balas 55, fallo 60), evita la reentrada del mismo evento y reanuda la orden suspendida. Los eventos del mismo tipo pendientes se agrupan conservando los datos más recientes para limitar la cola. No equivale a todas las peculiaridades del gestor de eventos original (scan explícito recursivo, prioridades personalizadas, estado, teclado, ratón o fin de ronda). Esos métodos siguen disponibles en Java real conforme a su API.
+
+Las métricas nuevas de las prácticas Java miden desplazamiento y giros por instantáneas consecutivas; los eventos de combate se verifican mediante la traza del motor web. La experiencia se conserva localmente y la ficha de práctica no es una credencial oficial ni una evaluación protegida frente a la modificación del almacenamiento.

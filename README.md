@@ -4,7 +4,7 @@
 
 [Informe de pruebas](docs/VALIDATION.md) · **[Abrir el laboratorio](https://blai3epascal.github.io/OTEAs-RoboCODEx/)** · [Guía del profesorado](docs/TEACHER.md) · [Compatibilidad](docs/COMPATIBILITY.md) · [Referencias y diseño](docs/DESIGN.md) · [Licencias de terceros](THIRD_PARTY_NOTICES.md)
 
-Versión **0.2.0**. El entorno funciona dentro del navegador: el alumnado no instala Java, Python, máquinas virtuales ni servicios locales. GitHub Pages sirve los archivos estáticos. La JVM, el compilador y los intérpretes se ejecutan en el navegador.
+Versión **0.3.0**. El entorno funciona dentro del navegador: el alumnado no instala Java, Python, máquinas virtuales ni servicios locales. GitHub Pages sirve los archivos estáticos. La JVM, el compilador y los intérpretes se ejecutan en el navegador.
 
 ## Qué puedes hacer
 
@@ -105,3 +105,17 @@ Los mapas con obstáculos pertenecen al motor educativo web (bloques, Python y J
 ## Pruebas de salas
 
 `npm test` incluye pruebas del servicio con SQLite real: permisos, contraseñas, concurrencia de ocho inscripciones, límites, caducidad, reapertura, compatibilidad y transmisión de resultados. `node scripts/verify_rooms.mjs` prueba una sala efímera contra el servicio publicado y la elimina al terminar. GitHub Actions exige ambas comprobaciones antes de publicar GitHub Pages, además de la compilación y las partidas Java originales consecutivas.
+
+## Eventos, efectos y aprendizaje (0.3.0)
+
+Se corrige la espera de los eventos del motor web: un manejador de mayor prioridad interrumpe una orden pendiente y, al terminar, ésta continúa con su parte restante. Se conserva la estructura de proyectos `run/scan/wall/hit`; `hit` sigue significando recibir una bala. Se añaden `robot` (colisión con otro carro), `bulletHit`, `bulletMissed` y `bulletHitBullet`. Una colisión con un robot ya no dispara el evento de pared. Las balas pueden interceptarse mediante comprobación de sus trayectorias entre turnos. La nueva pieza Escanear ahora genera `scan();` en Java.
+
+Los siete eventos de combate están disponibles en el editor de bloques, en la exportación Java y en el selector de manejadores del editor de código. Java utiliza sus métodos originales `onScannedRobot`, `onHitWall`, `onHitRobot`, `onHitByBullet`, `onBulletHit`, `onBulletMissed` y `onBulletHitBullet`, con sus clases de evento. JavaScript permite registrarlos en `robot` o definir funciones globales asíncronas con esos nombres. Python utiliza funciones globales asíncronas y `robot` para las órdenes. Las órdenes deben esperarse con `await`; las interrupciones suspenden también los RPC pendientes. La arena web sigue siendo un motor educativo y su continuación de órdenes no sustituye todos los detalles de la física ni del gestor de eventos Java.
+
+Las explosiones y fogonazos se dibujan con vectores propios. Hay tres estilos de explosión (supernova, ondas y arcade), tres de fuego (llamas, plasma y arcade), cuatro colores, tamaño, duración e interruptores de fuego, explosión y restos. Un reloj visual permite que humo, llamas y fragmentos continúen unos segundos tras el último turno sin añadir turnos ni alterar el resultado. Se detectan también disparos y destrucciones en las instantáneas del motor Java original. El modo calma y Sin efectos los desactivan; la preferencia de movimiento reducido limita partículas y expansión. Las preferencias conservan cookie de sesión y guardado local.
+
+Se mantienen las seis misiones iniciales y se añaden doce: nueve prácticas de eventos, condiciones, anidación e integración, y tres de Java real (compilación, variables y métodos). Cada una presenta tres pasos y comprueba evidencia de ejecución. Los escenarios de práctica reproducibles incluyen instructor, diana, colisiones, interceptación de balas y contenedores. Las prácticas Java se compilan con ECJ y se verifican mediante posiciones y giros observados del motor original; no se presenta la salida Java como una simulación de bloques. Los logros anteriores y XP existentes se conservan.
+
+La experiencia se gana una vez por misión o distintivo, con seis niveles, títulos y paletas visuales sin ventajas de combate. El itinerario recomienda la siguiente práctica y permite filtrar rutas. Se puede exportar una ficha de práctica local con competencias y evidencia, que no es una acreditación académica. Las soluciones razonadas están disponibles para comprobar y discutir el programa, y repetir una misión no vuelve a cobrar XP.
+
+Referencia de los métodos y eventos: [API oficial Robot](https://robocode.sourceforge.io/docs/robocode/robocode/Robot.html). Las versiones originales del motor, JVM, lenguajes y licencias se mantienen. Las nuevas animaciones y el material didáctico son código/contenido propio MIT.

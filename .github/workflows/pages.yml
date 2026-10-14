@@ -26,6 +26,8 @@ jobs:
       - name: Published room service smoke test
         run: node scripts/verify_rooms.mjs
       - run: python3 scripts/build.py
+      - name: Generated blocks and Java lessons compile with ECJ
+        run: node scripts/verify_blocks_java.mjs
       - name: Original Java engine smoke test
         run: |
           timeout 150 java -Dotea.symbols=runtime/jdk17-symbols.jar -cp 'runtime/*' otea.ArenaBridge runtime/robocode-home.zip /tmp/otea-robocode-test > /tmp/otea-java.log 2>&1
