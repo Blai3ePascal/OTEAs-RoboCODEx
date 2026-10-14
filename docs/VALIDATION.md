@@ -89,3 +89,5 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 
 - La destrucción real de una diana Java reveló que, durante las pausas entre fotogramas de la JVM, faltaba refresco del lienzo aunque hubiese partículas activas. El lienzo ahora anima a 30 FPS también durante un combate que está esperando fotogramas, usando el reloj visual actual sin alterar la simulación.
 - 54 pruebas finales; se añade una comprobación de seguridad del dibujo cuando el tiempo del fotograma es anterior al nacimiento de una partícula. Las coordenadas siguen siendo finitas en los tres estilos.
+
+- 55 pruebas finales: el worker JavaScript apunta usando el estado exacto del evento de detección y destruye una diana inmóvil por daño real. La arena espera la recepción del lote de eventos y la primera orden de su manejador antes de continuar; así el cañón no gira durante la entrega asíncrona del evento. La misma sincronización se usa con CPython.
