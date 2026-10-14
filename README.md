@@ -119,3 +119,6 @@ Se mantienen las seis misiones iniciales y se añaden doce: nueve prácticas de 
 La experiencia se gana una vez por misión o distintivo, con seis niveles, títulos y paletas visuales sin ventajas de combate. El itinerario recomienda la siguiente práctica y permite filtrar rutas. Se puede exportar una ficha de práctica local con competencias y evidencia, que no es una acreditación académica. Las soluciones razonadas están disponibles para comprobar y discutir el programa, y repetir una misión no vuelve a cobrar XP.
 
 Referencia de los métodos y eventos: [API oficial Robot](https://robocode.sourceforge.io/docs/robocode/robocode/Robot.html). Las versiones originales del motor, JVM, lenguajes y licencias se mantienen. Las nuevas animaciones y el material didáctico son código/contenido propio MIT.
+
+
+Ajustes se organiza en tres pestañas adaptables al ancho de pantalla. La explosión de destrucción conserva su tiempo visual antes de mostrar el resultado o pasar al siguiente encuentro de torneo; una llegada tardía a la sala también muestra el chasis destruido. Las preferencias sin efectos y de movimiento reducido se respetan.

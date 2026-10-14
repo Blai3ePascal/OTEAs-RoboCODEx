@@ -60,3 +60,21 @@ Fecha: 14 de octubre de 2026.
 - El servicio de salas conserva las cuatro familias nuevas de eventos sin cambiar el protocolo, las contraseñas, los mapas ni las migraciones.
 
 Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con alumnado. La ficha es un registro local, no una acreditación académica.
+
+
+### Comprobación de la web publicada
+
+- GitHub Actions aprobó las 49 pruebas, la API de salas publicada, la compilación de los siete manejadores y las tres soluciones Java y tres combates consecutivos del motor original.
+- Un proyecto de la versión anterior sigue abriendo sus tanques. Seleccionar el evento nuevo de choque y añadir Retroceder genera onHitRobot en la vista Java sin errores.
+- La misión de interrupción del radar marca sus tres pasos por ejecución, acredita el disparo antes del giro completo y la reanudación. Repetirla conserva los mismos XP.
+- La colisión con tanque marca sus tres pasos en bloques, JavaScript real y CPython/Pyodide; el evento retrocede 60 y gira 90°. La paleta Neón se habilita a 500 XP y se aplica a las piezas.
+- Opciones: color de explosión violeta, ondas de choque, plasma, tamaño espectacular y duración cinemática se conservan tras recargar. La prueba visual anima la explosión sin avanzar la simulación. [Captura de la prueba visual](screenshots/effects-20261014.jpg).
+
+- La misión «Del puzzle al compilador» también se verificó en Chrome: ECJ compila, el motor Robocode mueve el tanque, los tres pasos se acreditan y la experiencia habilita el nivel Operador.
+
+### Corrección del menú y visibilidad de la destrucción
+
+- Ajustes se divide en Aspecto, Fuego y explosiones y Accesibilidad. El encabezado y el botón Listo permanecen visibles; fieldsets, rejillas y controles se ajustan al ancho disponible.
+- La destrucción se detecta también cuando el primer fotograma recibido por un espectador ya contiene un tanque muerto. Al retroceder el contador de turnos se reinician los identificadores de efectos para la siguiente partida.
+- El resultado y el siguiente encuentro esperan el tiempo visual de la explosión. No se agregan turnos ni se cambia el resultado; el modo sin efectos y la preferencia de movimiento reducido continúan inmediatamente.
+- 52 pruebas automáticas: se añade una destrucción por daño real de balas, la llegada tardía de un espectador/reinicio de partida y la duración de la transición visual.

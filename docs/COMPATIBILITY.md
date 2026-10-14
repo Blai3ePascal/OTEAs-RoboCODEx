@@ -36,7 +36,7 @@ Hasta ocho participantes por torneo; 32 robots en el hangar. Liga: todos contra 
 
 Cada encuentro tiene un número configurable de partidas. Las victorias de partida pesan 3 y los empates 1 para determinar el resultado agregado del encuentro; después se aplican los puntos configurados de victoria/empate a la clasificación. En liga/suizo, un empate permanece empate. Eliminación usa el criterio elegido: puntuación agregada de combate y después sorteo reproducible por semilla, o semilla directamente. La tabla conserva el empate del combate y el cuadro identifica al clasificado.
 
-No hay competición entre Java clásico y Python/JavaScript en un mismo motor. Bloques participan en ambos. No hay servidor multijugador, cuentas ni clasificaciones remotas. Los torneos se ejecutan con archivos aportados en el mismo navegador y sus resultados se exportan.
+No hay competición entre Java clásico y Python/JavaScript en un mismo motor. Bloques participan en ambos. El modo individual conserva los archivos en el navegador y exporta resultados. Las salas compartidas usan el servicio Worker/D1 documentado en ROOMS.md: el organizador ejecuta el combate y transmite fotogramas y resultados a los participantes. No existen cuentas ni un ranking global.
 
 ## Grabaciones
 
