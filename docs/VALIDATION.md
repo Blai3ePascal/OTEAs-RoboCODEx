@@ -98,3 +98,8 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - Iniciar una partida lleva la vista al campo; su tamaño se limita según la altura del viewport. Así los controles de preparación largos no dejan la explosión fuera de la pantalla.
 
 - La grabación conserva también el último turno impar de una partida web. Ese último fotograma contiene la destrucción y permite repetir sus efectos sin omitir la muerte del tanque.
+
+- Caso reproducible del motor original: NativeDeathProbe compila un cazador Java y ejecuta Robocode 1.11.1 en un campo de 800 × 800. Produce 290 instantáneas; SittingDuck muere en el turno 140 y el cazador conserva 142 de energía. El extracto de cinco fotogramas conserva el paso de vivo a muerto: [repetición de la destrucción Java](fixtures/native-death.json), generada por [el programa de comprobación](../scripts/NativeDeathProbe.java).
+- El visor identifica el motor de una repetición y muestra «Fin de reproducción» al terminar, sin registrar un empate nuevo ni conceder experiencia.
+
+- 56 pruebas finales: el extracto real de Robocode genera exactamente una explosión en las coordenadas originales del robot destruido y conserva el fuego del chasis tras terminar los fotogramas.

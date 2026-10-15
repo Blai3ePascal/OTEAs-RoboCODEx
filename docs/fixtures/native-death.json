@@ -1,0 +1,273 @@
+{
+  "version": 1,
+  "type": "replay",
+  "engine": "jvm",
+  "source": "Robocode 1.11.1 / ArenaBridge / scripts/NativeDeathProbe.java",
+  "frames": [
+    {
+      "type": "frame",
+      "tick": 138,
+      "round": 0,
+      "robots": [
+        {
+          "id": 0,
+          "name": "SittingDuck",
+          "fullName": "sample.SittingDuck",
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "heading": 136.22662768417646,
+          "gun": 136.22662768417646,
+          "radar": 136.22662768417646,
+          "energy": 4.0,
+          "heat": 0.0,
+          "alive": true,
+          "color": "#ffff00"
+        },
+        {
+          "id": 1,
+          "name": "Cazador",
+          "fullName": "probe.Cazador",
+          "x": 279.62875812620507,
+          "y": 425.83616782766023,
+          "heading": 198.8230837577105,
+          "gun": 22.935000804410926,
+          "radar": 22.935000804410926,
+          "energy": 133.0,
+          "heat": 1.4,
+          "alive": true,
+          "color": "#0000ff"
+        }
+      ],
+      "bullets": [
+        {
+          "x": 281.88169133877716,
+          "y": 469.7784514726835,
+          "owner": 1,
+          "heading": 2.935000804410924,
+          "power": 3.0,
+          "explosion": false
+        },
+        {
+          "x": 280.7552247324911,
+          "y": 447.8073096501719,
+          "owner": 1,
+          "heading": 2.935000804410924,
+          "power": 3.0,
+          "explosion": false
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "tick": 139,
+      "round": 0,
+      "robots": [
+        {
+          "id": 0,
+          "name": "SittingDuck",
+          "fullName": "sample.SittingDuck",
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "heading": 136.22662768417646,
+          "gun": 136.22662768417646,
+          "radar": 136.22662768417646,
+          "energy": 4.0,
+          "heat": 0.0,
+          "alive": true,
+          "color": "#ffff00"
+        },
+        {
+          "id": 1,
+          "name": "Cazador",
+          "fullName": "probe.Cazador",
+          "x": 279.62875812620507,
+          "y": 425.83616782766023,
+          "heading": 198.8230837577105,
+          "gun": 2.935000804410924,
+          "radar": 2.935000804410924,
+          "energy": 133.0,
+          "heat": 1.2999999999999998,
+          "alive": true,
+          "color": "#0000ff"
+        }
+      ],
+      "bullets": [
+        {
+          "x": 281.88169133877716,
+          "y": 469.7784514726835,
+          "owner": 1,
+          "heading": 2.935000804410924,
+          "power": 3.0,
+          "explosion": false
+        },
+        {
+          "x": 281.31845803563414,
+          "y": 458.7928805614277,
+          "owner": 1,
+          "heading": 2.935000804410924,
+          "power": 3.0,
+          "explosion": false
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "tick": 140,
+      "round": 0,
+      "robots": [
+        {
+          "id": 0,
+          "name": "SittingDuck",
+          "fullName": "sample.SittingDuck",
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "heading": 136.22662768417646,
+          "gun": 136.22662768417646,
+          "radar": 136.22662768417646,
+          "energy": 0.0,
+          "heat": 0.0,
+          "alive": false,
+          "color": "#ffff00"
+        },
+        {
+          "id": 1,
+          "name": "Cazador",
+          "fullName": "probe.Cazador",
+          "x": 279.62875812620507,
+          "y": 425.83616782766023,
+          "heading": 198.8230837577105,
+          "gun": 2.935000804410924,
+          "radar": 2.935000804410924,
+          "energy": 142.0,
+          "heat": 1.1999999999999997,
+          "alive": true,
+          "color": "#0000ff"
+        }
+      ],
+      "bullets": [
+        {
+          "x": 281.88169133877716,
+          "y": 469.7784514726835,
+          "owner": 1,
+          "heading": 2.935000804410924,
+          "power": 3.0,
+          "explosion": false
+        },
+        {
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "owner": 0,
+          "heading": 0.0,
+          "power": 1.0,
+          "explosion": true
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "tick": 141,
+      "round": 0,
+      "robots": [
+        {
+          "id": 0,
+          "name": "SittingDuck",
+          "fullName": "sample.SittingDuck",
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "heading": 136.22662768417646,
+          "gun": 136.22662768417646,
+          "radar": 136.22662768417646,
+          "energy": 0.0,
+          "heat": 0.0,
+          "alive": false,
+          "color": "#ffff00"
+        },
+        {
+          "id": 1,
+          "name": "Cazador",
+          "fullName": "probe.Cazador",
+          "x": 279.62875812620507,
+          "y": 425.83616782766023,
+          "heading": 198.8230837577105,
+          "gun": 2.935000804410924,
+          "radar": 2.935000804410924,
+          "energy": 142.0,
+          "heat": 1.0999999999999996,
+          "alive": true,
+          "color": "#0000ff"
+        }
+      ],
+      "bullets": [
+        {
+          "x": 281.88169133877716,
+          "y": 469.7784514726835,
+          "owner": 1,
+          "heading": 2.935000804410924,
+          "power": 3.0,
+          "explosion": false
+        },
+        {
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "owner": 0,
+          "heading": 0.0,
+          "power": 1.0,
+          "explosion": true
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "tick": 142,
+      "round": 0,
+      "robots": [
+        {
+          "id": 0,
+          "name": "SittingDuck",
+          "fullName": "sample.SittingDuck",
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "heading": 136.22662768417646,
+          "gun": 136.22662768417646,
+          "radar": 136.22662768417646,
+          "energy": 0.0,
+          "heat": 0.0,
+          "alive": false,
+          "color": "#ffff00"
+        },
+        {
+          "id": 1,
+          "name": "Cazador",
+          "fullName": "probe.Cazador",
+          "x": 279.62875812620507,
+          "y": 425.83616782766023,
+          "heading": 198.8230837577105,
+          "gun": 2.935000804410924,
+          "radar": 2.935000804410924,
+          "energy": 142.0,
+          "heat": 0.9999999999999997,
+          "alive": true,
+          "color": "#0000ff"
+        }
+      ],
+      "bullets": [
+        {
+          "x": 281.88169133877716,
+          "y": 469.7784514726835,
+          "owner": 1,
+          "heading": 2.935000804410924,
+          "power": 3.0,
+          "explosion": false
+        },
+        {
+          "x": 282.7160842702683,
+          "y": 486.05284907239496,
+          "owner": 0,
+          "heading": 0.0,
+          "power": 1.0,
+          "explosion": true
+        }
+      ]
+    }
+  ]
+}
