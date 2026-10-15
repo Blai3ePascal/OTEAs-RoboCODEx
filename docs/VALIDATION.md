@@ -93,3 +93,8 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - 55 pruebas finales: el worker JavaScript apunta usando el estado exacto del evento de detección y destruye una diana inmóvil por daño real. La arena espera la recepción del lote de eventos y la primera orden de su manejador antes de continuar; así el cañón no gira durante la entrega asíncrona del evento. La misma sincronización se usa con CPython.
 
 - La carga fría de CheerpJ mostró un fallo temporal de acceso al paquete y un tiempo de compilación superior a dos minutos. El arranque fallido ya no conserva una promesa rechazada y la compilación dispone de cinco minutos antes de descartar el entorno. La validación técnica local y de GitHub sigue usando el motor original; no se equipara con la velocidad de un dispositivo escolar.
+
+- La partida normal JavaScript publicada termina con victoria del cazador y destrucción de la diana en el turno 151. Una nueva partida después de la anterior también avanza y termina: la animación del último fotograma ya no detiene el bucle del juego.
+- Iniciar una partida lleva la vista al campo; su tamaño se limita según la altura del viewport. Así los controles de preparación largos no dejan la explosión fuera de la pantalla.
+
+- La grabación conserva también el último turno impar de una partida web. Ese último fotograma contiene la destrucción y permite repetir sus efectos sin omitir la muerte del tanque.
