@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-15",
+  "browser": "Chrome",
+  "mode": "vista ampliada en marcos con viewport real",
+  "checks": [
+    {
+      "field": 154,
+      "inside": true,
+      "open": true,
+      "overflow": false,
+      "overlap": false,
+      "size": "320",
+      "square": true
+    },
+    {
+      "field": 306,
+      "hidden": true,
+      "inside": true,
+      "open": false,
+      "overflow": false,
+      "size": "320",
+      "square": true
+    },
+    {
+      "field": 224,
+      "inside": true,
+      "open": true,
+      "overflow": false,
+      "overlap": false,
+      "size": "390",
+      "square": true
+    },
+    {
+      "field": 376,
+      "hidden": true,
+      "inside": true,
+      "open": false,
+      "overflow": false,
+      "size": "390",
+      "square": true
+    },
+    {
+      "field": 522,
+      "inside": true,
+      "open": true,
+      "overflow": false,
+      "overlap": false,
+      "size": "768",
+      "square": true
+    },
+    {
+      "field": 616,
+      "hidden": true,
+      "inside": true,
+      "open": false,
+      "overflow": false,
+      "size": "768",
+      "square": true
+    },
+    {
+      "field": 696,
+      "inside": true,
+      "open": true,
+      "overflow": false,
+      "overlap": false,
+      "size": "1280",
+      "square": true
+    },
+    {
+      "field": 696,
+      "hidden": true,
+      "inside": true,
+      "open": false,
+      "overflow": false,
+      "size": "1280",
+      "square": true
+    }
+  ]
+}

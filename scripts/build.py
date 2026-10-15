@@ -50,7 +50,8 @@ dist.mkdir()
 for name in ['index.html','jvm.html','styles.css','LICENSE','THIRD_PARTY_NOTICES.md']:
  shutil.copy2(ROOT/name,dist/name)
 for name in ['src','assets','runtime','licenses','docs']:shutil.copytree(ROOT/name,dist/name)
-revision=hashlib.sha256(b''.join(f.read_bytes() for f in sorted((ROOT/'src').glob('*.js')))+(ROOT/'java/ArenaBridge.java').read_bytes()).hexdigest()[:12]
+revision_sources=[*sorted((ROOT/'src').glob('*.js')),ROOT/'java/ArenaBridge.java',ROOT/'styles.css',ROOT/'index.html',ROOT/'jvm.html']
+revision=hashlib.sha256(b''.join(f.read_bytes() for f in revision_sources)).hexdigest()[:12]
 bridge_name='arena-bridge-'+hashlib.sha256((runtime/'arena-bridge.jar').read_bytes()).hexdigest()[:12]+'.jar'
 (dist/'runtime/arena-bridge.jar').rename(dist/'runtime'/bridge_name)
 for f in (dist/'src').glob('*.js'):

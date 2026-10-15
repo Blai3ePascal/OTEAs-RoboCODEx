@@ -114,3 +114,5 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - Medición local orientativa del motor, sin dibujo: 20.000 turnos con ocho carros de combate y 3.069 detecciones en aproximadamente 100 ms. No es una medida de FPS de un ordenador escolar ni una promesa de latencia de red.
 
 - Terminología unificada en interfaz, textos accesibles, eventos, misiones, mensajes de salas, exportaciones y guías: carro de combate / proyectil. Los identificadores de la API original y los nombres escritos por el alumnado se conservan.
+
+- Comprobación publicada: iniciar/pausar, avanzar un turno exacto (17 → 18), ocultar/mostrar y salir conservando la partida. Ocho medidas reales de campo a 320, 390, 768 y 1280 píxeles, con panel abierto/cerrado: campo cuadrado, dentro del viewport, sin solapamiento ni desbordamiento. Resultados en `qa-combat-results.json`. Captura en `screenshots/combat-fullscreen-20261015.jpg`. La repetición de fotogramas del Robocode original también conserva su distintivo, telemetría y final correcto en la vista ampliada.
