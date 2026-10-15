@@ -122,3 +122,6 @@ Referencia de los métodos y eventos: [API oficial Robot](https://robocode.sourc
 
 
 Ajustes se organiza en tres pestañas adaptables al ancho de pantalla. La explosión de destrucción conserva su tiempo visual antes de mostrar el resultado o pasar al siguiente encuentro de torneo; una llegada tardía a la sala también muestra el chasis destruido. Las preferencias sin efectos y de movimiento reducido se respetan.
+
+
+Para comprobar la destrucción con datos del motor original, importa [esta repetición Java](docs/fixtures/native-death.json) desde **Arena → Ver repetición**. El [programa de comprobación](scripts/NativeDeathProbe.java) genera el combate real; la [validación](docs/VALIDATION.md) incluye resultados y capturas de la interfaz.
