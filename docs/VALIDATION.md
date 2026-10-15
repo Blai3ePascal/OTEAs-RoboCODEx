@@ -105,3 +105,10 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - 56 pruebas finales: el extracto real de Robocode genera exactamente una explosión en las coordenadas originales del robot destruido y conserva el fuego del chasis tras terminar los fotogramas.
 
 - Comprobación visual publicada del extracto Java: el visor muestra Robocode original, SittingDuck fuera, Cazador con 142 de energía, supernova violeta, llamas y humo que continúan tras «Fin de reproducción». [Fotograma de la animación](screenshots/destruction-native-replay-20261015.jpg). Es una reproducción de instantáneas del motor original; no se presenta como otra compilación de CheerpJ.
+
+## 15 de octubre · reacción de bloques y vista de combate
+
+- 62 pruebas automáticas superadas, incluidas detección/disparo en el mismo turno, detecciones consecutivas antes de reanudar el movimiento y ausencia de doble movimiento por turno. Se conservan las pruebas de prioridades, reanudación, JavaScript real, daño, efectos, mapas, progreso y salas.
+- Ciclo de pantalla completa nativa y alternativa verificado con un adaptador DOM: los nodos originales vuelven a su posición, conservan permisos y permiten repetir entrada/salida, ocultar el panel y salir con Escape. La geometría real se comprueba aparte en la versión publicada.
+- La telemetría y el listado conservan sus nodos y solo actualizan textos que cambian. Se evita dibujar dos veces el mismo fotograma; las partículas siguen el ritmo de animación del navegador.
+- Medición local orientativa del motor, sin dibujo: 20.000 turnos con ocho tanques y 3.069 detecciones en aproximadamente 100 ms. No es una medida de FPS de un ordenador escolar ni una promesa de latencia de red.

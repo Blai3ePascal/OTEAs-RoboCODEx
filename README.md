@@ -125,3 +125,9 @@ Ajustes se organiza en tres pestañas adaptables al ancho de pantalla. La explos
 
 
 Para comprobar la destrucción con datos del motor original, importa [esta repetición Java](docs/fixtures/native-death.json) desde **Arena → Ver repetición**. El [programa de comprobación](scripts/NativeDeathProbe.java) genera el combate real; la [validación](docs/VALIDATION.md) incluye resultados y capturas de la interfaz.
+
+### Combate ampliado y reacción de bloques
+
+En Arena, **Pantalla completa** amplía el campo y lleva los controles, competidores y telemetría a una columna derecha. **Ocultar panel** libera ese espacio; **Mostrar panel**, **Salir** o Escape permiten volver. Si el navegador restringe la API de pantalla completa, funciona una vista ampliada dentro de la ventana. Los mismos controles conservan los permisos de las salas y la partida en marcha.
+
+En Arena web, los eventos de bloques interrumpen la orden pendiente en el turno de detección. Un primer bloque Disparar responde en ese mismo turno; las órdenes que consumen tiempo comienzan en el siguiente, sin avanzar dos veces la física. Las detecciones pendientes se atienden antes de reanudar la orden suspendida. El motor Robocode original conserva sus propias reglas.
