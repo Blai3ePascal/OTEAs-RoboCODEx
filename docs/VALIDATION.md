@@ -5,7 +5,7 @@ Fecha: 13 de octubre de 2026.
 | Comprobación | Resultado | Entorno |
 |---|---|---|
 | 18 pruebas del motor educativo | PASS | Node 24 local; Node 22 GitHub Actions |
-| Colocación aleatoria, 100 semillas, 8 tanques y obstáculos | PASS | Prueba automática |
+| Colocación aleatoria, 100 semillas, 8 carros de combate y obstáculos | PASS | Prueba automática |
 | Secuencias, radar, calor, daños, eventos, límites y empates | PASS | Pruebas automáticas |
 | Emparejamientos de liga y suizo sin repetir cuando existe solución | PASS | Pruebas automáticas |
 | Recuperación de borradores incompletos | PASS | Validación de esquema automática |
@@ -15,7 +15,7 @@ Fecha: 13 de octubre de 2026.
 | Compilación Java real con ECJ en CheerpJ | PASS | Chrome sobre la web desplegada |
 | Misión: cambiar avanzar 50 a 100 y obtener el logro al recorrer 100 | PASS | Chrome sobre la web desplegada |
 | Importación y validación de Python y JavaScript reales | PASS | Chrome sobre la web desplegada |
-| Python emite órdenes y avanza 600 turnos con otro tanque | PASS | Chrome sobre la web desplegada |
+| Python emite órdenes y avanza 600 turnos con otro carro de combate | PASS | Chrome sobre la web desplegada |
 | Liga Python + JavaScript: finaliza, conserva empate, un punto cada uno | PASS | Chrome sobre la web desplegada |
 | Suizo de 3 participantes y 2 rondas: reparte descansos distintos | PASS | Chrome sobre la web desplegada |
 | Eliminación de 4 participantes: 3 encuentros y desempates identificados | PASS | Chrome sobre la web desplegada |
@@ -32,7 +32,7 @@ La parada por límite se solicita fuera del callback del turno del motor. La pru
 ## Actualización 0.2.0: salas y personalización
 
 - 30 pruebas automáticas correctas: las 18 anteriores y 12 adicionales de mapas, personalización y servicio con SQLite real.
-- 20 mapas distintos, campo libre predeterminado, conectividad con margen de tanque y 100 semillas de ocho tanques por mapa (16 000 posiciones seguras). Rechazo de un recinto personalizado cerrado.
+- 20 mapas distintos, campo libre predeterminado, conectividad con margen de carro de combate y 100 semillas de ocho carros de combate por mapa (16 000 posiciones seguras). Rechazo de un recinto personalizado cerrado.
 - API publicada comprobada con una sala efímera: creación, contraseña errónea, entrada desde otra sesión, inscripción, código visible sólo al organizador, permiso de inicio, cierre de inscripción durante la partida, fotograma compartido, resultado con alias y reapertura. Limpieza al terminar.
 - Control de versión probado con ocho inscripciones simultáneas. Límites de tamaño, permisos, compatibilidad de motor, caducidad y límite de intentos comprobados.
 - Alias y colores por pieza comprobados en validación, instantáneas y puntuación; preferencias conservan la recuperación del proyecto.
@@ -65,19 +65,19 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 ### Comprobación de la web publicada
 
 - GitHub Actions aprobó las 49 pruebas, la API de salas publicada, la compilación de los siete manejadores y las tres soluciones Java y tres combates consecutivos del motor original.
-- Un proyecto de la versión anterior sigue abriendo sus tanques. Seleccionar el evento nuevo de choque y añadir Retroceder genera onHitRobot en la vista Java sin errores.
+- Un proyecto de la versión anterior sigue abriendo sus carros de combate. Seleccionar el evento nuevo de choque y añadir Retroceder genera onHitRobot en la vista Java sin errores.
 - La misión de interrupción del radar marca sus tres pasos por ejecución, acredita el disparo antes del giro completo y la reanudación. Repetirla conserva los mismos XP.
-- La colisión con tanque marca sus tres pasos en bloques, JavaScript real y CPython/Pyodide; el evento retrocede 60 y gira 90°. La paleta Neón se habilita a 500 XP y se aplica a las piezas.
+- La colisión con carro de combate marca sus tres pasos en bloques, JavaScript real y CPython/Pyodide; el evento retrocede 60 y gira 90°. La paleta Neón se habilita a 500 XP y se aplica a las piezas.
 - Opciones: color de explosión violeta, ondas de choque, plasma, tamaño espectacular y duración cinemática se conservan tras recargar. La prueba visual anima la explosión sin avanzar la simulación. [Captura de la prueba visual](screenshots/effects-20261014.jpg).
 
-- La misión «Del puzzle al compilador» también se verificó en Chrome: ECJ compila, el motor Robocode mueve el tanque, los tres pasos se acreditan y la experiencia habilita el nivel Operador.
+- La misión «Del puzzle al compilador» también se verificó en Chrome: ECJ compila, el motor Robocode mueve el carro de combate, los tres pasos se acreditan y la experiencia habilita el nivel Operador.
 
 ### Corrección del menú y visibilidad de la destrucción
 
 - Ajustes se divide en Aspecto, Fuego y explosiones y Accesibilidad. El encabezado y el botón Listo permanecen visibles; fieldsets, rejillas y controles se ajustan al ancho disponible.
-- La destrucción se detecta también cuando el primer fotograma recibido por un espectador ya contiene un tanque muerto. Al retroceder el contador de turnos se reinician los identificadores de efectos para la siguiente partida.
+- La destrucción se detecta también cuando el primer fotograma recibido por un espectador ya contiene un carro de combate muerto. Al retroceder el contador de turnos se reinician los identificadores de efectos para la siguiente partida.
 - El resultado y el siguiente encuentro esperan el tiempo visual de la explosión. No se agregan turnos ni se cambia el resultado; el modo sin efectos y la preferencia de movimiento reducido continúan inmediatamente.
-- 52 pruebas automáticas: se añade una destrucción por daño real de balas, la llegada tardía de un espectador/reinicio de partida y la duración de la transición visual.
+- 52 pruebas automáticas: se añade una destrucción por daño real de proyectiles, la llegada tardía de un espectador/reinicio de partida y la duración de la transición visual.
 
 - Menú publicado: 12 comprobaciones reales en marcos de 320, 390, 768 y 1280 píxeles (tres pestañas por tamaño). Ninguna presenta desbordamiento horizontal; Cerrar y Listo permanecen dentro del viewport. [Captura del menú corregido](screenshots/settings-responsive-20261015.jpg).
 - La misión de variables también compila y ejecuta en CheerpJ, completa sus tres criterios y conserva la progresión.
@@ -97,7 +97,7 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - La partida normal JavaScript publicada termina con victoria del cazador y destrucción de la diana en el turno 151. Una nueva partida después de la anterior también avanza y termina: la animación del último fotograma ya no detiene el bucle del juego.
 - Iniciar una partida lleva la vista al campo; su tamaño se limita según la altura del viewport. Así los controles de preparación largos no dejan la explosión fuera de la pantalla.
 
-- La grabación conserva también el último turno impar de una partida web. Ese último fotograma contiene la destrucción y permite repetir sus efectos sin omitir la muerte del tanque.
+- La grabación conserva también el último turno impar de una partida web. Ese último fotograma contiene la destrucción y permite repetir sus efectos sin omitir la muerte del carro de combate.
 
 - Caso reproducible del motor original: NativeDeathProbe compila un cazador Java y ejecuta Robocode 1.11.1 en un campo de 800 × 800. En la ejecución registrada produjo 290 instantáneas; SittingDuck murió en el turno 140 y el cazador conserva 142 de energía. El extracto de cinco fotogramas conserva el paso de vivo a muerto: [repetición de la destrucción Java](fixtures/native-death.json), generada por [el programa de comprobación](../scripts/NativeDeathProbe.java).
 - El visor identifica el motor de una repetición y muestra «Fin de reproducción» al terminar, sin registrar un empate nuevo ni conceder experiencia.
@@ -111,4 +111,6 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - 62 pruebas automáticas superadas, incluidas detección/disparo en el mismo turno, detecciones consecutivas antes de reanudar el movimiento y ausencia de doble movimiento por turno. Se conservan las pruebas de prioridades, reanudación, JavaScript real, daño, efectos, mapas, progreso y salas.
 - Ciclo de pantalla completa nativa y alternativa verificado con un adaptador DOM: los nodos originales vuelven a su posición, conservan permisos y permiten repetir entrada/salida, ocultar el panel y salir con Escape. La geometría real se comprueba aparte en la versión publicada.
 - La telemetría y el listado conservan sus nodos y solo actualizan textos que cambian. Se evita dibujar dos veces el mismo fotograma; las partículas siguen el ritmo de animación del navegador.
-- Medición local orientativa del motor, sin dibujo: 20.000 turnos con ocho tanques y 3.069 detecciones en aproximadamente 100 ms. No es una medida de FPS de un ordenador escolar ni una promesa de latencia de red.
+- Medición local orientativa del motor, sin dibujo: 20.000 turnos con ocho carros de combate y 3.069 detecciones en aproximadamente 100 ms. No es una medida de FPS de un ordenador escolar ni una promesa de latencia de red.
+
+- Terminología unificada en interfaz, textos accesibles, eventos, misiones, mensajes de salas, exportaciones y guías: carro de combate / proyectil. Los identificadores de la API original y los nombres escritos por el alumnado se conservan.

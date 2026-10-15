@@ -4,7 +4,7 @@ Referencias consultadas el 13 de octubre de 2026.
 
 | Referencia | Observación de la página | Aplicación en RoboCODEx |
 |---|---|---|
-| OGame | Escena espacial dominante, identidad del mundo, entrada clara al juego | Hangar de pantalla amplia, tanque protagonista, operaciones y campo coherentes |
+| OGame | Escena espacial dominante, identidad del mundo, entrada clara al juego | Hangar de pantalla amplia, carro de combate protagonista, operaciones y campo coherentes |
 | Urban Rivals | Composición ilustrada, colores contrastados, identidades coleccionables, llamadas breves | Chasis con identidad, tarjetas de modo, naranja/morado/menta y celebración de resultados |
 | Scratch | Piezas encajables, categorías y exploración mediante prueba | Bloques visibles, parámetros editables, eventos separados, bucles anidados y vista del Java |
 | Robocode UCM | Trayectoria del taller y explicación por cuerpo, cañón y radar | Recursos históricos, microguía enlazada y seis misiones que siguen esa secuencia |
@@ -17,7 +17,7 @@ El diseño busca una entrada rápida a una tarea comprensible, respuesta visual 
 
 No se diagnostica a una generación por su “dopamina”. Más efectos no garantizan más aprendizaje. Por eso el espectáculo puede regularse y apagarse. No hay destellos deliberados, rachas obligatorias, recompensas aleatorias de pago, penalización por ausentarse ni avisos insistentes. El reto diario se puede jugar cuando se quiera y no borra logros anteriores.
 
-Los distintivos reconocen objetivos verificados; el progreso se conserva y no afecta a la fuerza del tanque. El profesorado dispone de un entorno breve y manipulable; el contenido principal consiste en hacer, observar y explicar.
+Los distintivos reconocen objetivos verificados; el progreso se conserva y no afecta a la fuerza del carro de combate. El profesorado dispone de un entorno breve y manipulable; el contenido principal consiste en hacer, observar y explicar.
 
 ## Arte y marca
 
