@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-import {blocksJava} from './core.js';
+import {blocksJava,className} from './core.js';
 const IDENT=/^[$_\p{ID_Start}][$_\u200c\u200d\p{ID_Continue}]*$/u;
 const RESERVED=new Set('abstract assert boolean break byte case catch char class const continue default do double else enum extends final finally float for goto if implements import instanceof int interface long native new package private protected public return short static strictfp super switch synchronized this throw throws transient try void volatile while true false null _'.split(' '));
 // Retain offsets, and ignore comments, strings, chars and Java text blocks.
@@ -28,3 +28,5 @@ export function uniqueIdentityPlan(t,others){const before=javaIdentity(t);if(!be
  throw Error('No se ha encontrado una identidad libre. Elige otro nombre en el editor.');}
 export function javaSource(t){return t.language==='blocks'?blocksJava(t.blocks,t.name,t.color):t.code;}
 export function javaResultIndex(name,identities){const actual=String(name||'').replace(/\*+$/,'');return identities.indexOf(actual);}
+
+export function javaFileName(t){return (javaIdentity(t)?.className||className(t.name))+'.java';}

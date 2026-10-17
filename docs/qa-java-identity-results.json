@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-17",
+  "checks": [
+    {
+      "id": "phone320",
+      "phase": "ficha",
+      "scrollWidth": 305,
+      "viewport": 305,
+      "visible": true
+    },
+    {
+      "applyInside": true,
+      "dialogOverflow": false,
+      "id": "phone320",
+      "phase": "propuesta",
+      "scrollWidth": 305,
+      "viewport": 305
+    },
+    {
+      "id": "phone390",
+      "phase": "ficha",
+      "scrollWidth": 375,
+      "viewport": 375,
+      "visible": true
+    },
+    {
+      "applyInside": true,
+      "dialogOverflow": false,
+      "id": "phone390",
+      "phase": "propuesta",
+      "scrollWidth": 375,
+      "viewport": 375
+    },
+    {
+      "id": "tablet768",
+      "phase": "ficha",
+      "scrollWidth": 753,
+      "viewport": 753,
+      "visible": true
+    },
+    {
+      "applyInside": true,
+      "dialogOverflow": false,
+      "id": "tablet768",
+      "phase": "propuesta",
+      "scrollWidth": 753,
+      "viewport": 753
+    },
+    {
+      "id": "desktop1280",
+      "phase": "ficha",
+      "scrollWidth": 1265,
+      "viewport": 1265,
+      "visible": true
+    },
+    {
+      "applyInside": true,
+      "dialogOverflow": false,
+      "id": "desktop1280",
+      "phase": "propuesta",
+      "scrollWidth": 1265,
+      "viewport": 1265
+    }
+  ],
+  "workflow": {
+    "declarationSelection": "Nova, línea 4",
+    "preflightJVMFrames": 0,
+    "invalidPackageRejected": true,
+    "applyAndUndo": true,
+    "cloneClass": "Nova",
+    "clonePackage": "aula.copia2.copia2",
+    "blocksRetained": true,
+    "browserJavaBattle": {
+      "participants": 4,
+      "ticks": 100,
+      "result": "Empate por límite de turnos",
+      "identities": [
+        "aula.Nova",
+        "aula.copia2.Nova",
+        "otea.robots.RadarA",
+        "otea.robots.RadarA2"
+      ]
+    }
+  }
+}

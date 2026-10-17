@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 import test from 'node:test';import assert from 'node:assert/strict';
-import {inspectJava,javaIdentity,javaConflicts,conflictMessage,changeJavaPackage,uniqueIdentityPlan,validPackage,javaResultIndex} from '../src/java-identity.js';
+import {inspectJava,javaIdentity,javaConflicts,conflictMessage,changeJavaPackage,uniqueIdentityPlan,validPackage,javaResultIndex,javaFileName} from '../src/java-identity.js';
 import {starterBlocks,blocksJava} from '../src/core.js';import {sanitizeTank} from '../service/rooms-worker.js';
 const java=(name='Alias',code='package aula; public class Nova extends robocode.Robot { public Nova() {} }')=>({id:name,name,creator:'OTEA',language:'java',code,blocks:starterBlocks(),color:'#ffb347'});
 test('Java identity comes from the actual public top-level declaration and retains selection offsets',()=>{const source='/* public class Fake {} */\npackage aula /* equipo */ . alumno;\n@Deprecated public final class Nova<T> extends robocode.Robot {String s="public class Wrong {}"; public class Inside {} }';const info=inspectJava(source);assert.equal(info.fullName,'aula.alumno.Nova');assert.equal(source.slice(info.classStart,info.classEnd),'Nova');assert.equal(info.line,3);});
@@ -17,3 +17,5 @@ test('Unique block plans retain all blocks, fit 40 characters and use a noncolli
 test('Inspection cache follows edits to Java code and generated block names',()=>{const t=java();assert.equal(javaIdentity(t).fullName,'aula.Nova');t.name='Alias distinto';assert.equal(javaIdentity(t).fullName,'aula.Nova');t.code=t.code.replace('package aula','package taller');assert.equal(javaIdentity(t).fullName,'taller.Nova');});
 test('The shared-room format preserves a corrected source with no new metadata fields',()=>{const t=java(),plan=uniqueIdentityPlan(t,[{...t,id:'other'}]);const clean=sanitizeTank({...t,code:plan.code});assert.equal(javaIdentity(clean).fullName,plan.after.fullName);assert.equal(clean.code,plan.code);});
 test('Results use full compiled identities, including two classes with the same simple name',()=>{const names=['aula.Nova','aula.copia2.Nova'];assert.equal(javaResultIndex('aula.copia2.Nova*',names),1);assert.equal(javaResultIndex('aula.Nova',names),0);assert.equal(javaResultIndex('Nova',names),-1);});
+
+test('Java downloads use the real public class filename even when the display alias differs',()=>{assert.equal(javaFileName(java('Mi alias visible')),'Nova.java');assert.equal(javaFileName({...java('Radar A'),language:'blocks'}),'RadarA.java');assert.equal(javaFileName(java('Borrador','public class')),'Borrador.java');});

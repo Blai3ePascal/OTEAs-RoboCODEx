@@ -134,7 +134,7 @@ En Arena web, los eventos de bloques interrumpen la orden pendiente en el turno 
 
 ### Ver y distinguir clases Java
 
-En **Taller → Identidad Java** se muestran la clase, el paquete y el identificador completo, también para los bloques. **Ver declaración** selecciona la clase en el editor Java o abre el Java generado desde bloques. El alias del carro y su clase pueden ser distintos.
+En **Taller → Identidad Java** se muestran la clase, el paquete y el identificador completo, también para los bloques. **Ver declaración** selecciona la clase en el editor Java o abre el Java generado desde bloques. El alias del carro y su clase pueden ser distintos. La descarga Java utiliza el nombre real de la clase pública, por ejemplo `Nova.java`.
 
 Al preparar una partida o torneo con el motor original, cada participante muestra su identificador. Si hay duplicados, el aviso indica los carros y la clase compartida, antes de cargar la JVM. **Revisar en taller → Preparar identidad única** muestra la propuesta antes de aplicarla: en Java se cambia el paquete; en bloques se propone un nombre que genere otra clase. Se puede revisar el código, elegir otro paquete válido y deshacer el cambio durante la sesión mientras no se haya vuelto a editar ese carro. Las copias nuevas reciben una identidad libre cuando la declaración permite hacerlo con seguridad.
 
