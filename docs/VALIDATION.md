@@ -116,3 +116,9 @@ Estas comprobaciones técnicas no sustituyen una evaluación del aprendizaje con
 - Terminología unificada en interfaz, textos accesibles, eventos, misiones, mensajes de salas, exportaciones y guías: carro de combate / proyectil. Los identificadores de la API original y los nombres escritos por el alumnado se conservan.
 
 - Comprobación publicada: iniciar/pausar, avanzar un turno exacto (17 → 18), ocultar/mostrar y salir conservando la partida. Ocho medidas reales de campo a 320, 390, 768 y 1280 píxeles, con panel abierto/cerrado: campo cuadrado, dentro del viewport, sin solapamiento ni desbordamiento. Resultados en `qa-combat-results.json`. Captura en `screenshots/combat-fullscreen-20261015.jpg`. La repetición de fotogramas del Robocode original también conserva su distintivo, telemetría y final correcto en la vista ampliada.
+
+## 17 de octubre · identidad Java y duplicados
+
+- 76 pruebas automáticas: identificación de la clase pública real, comentarios/cadenas/text blocks, alias diferentes, paquetes distintos, nombres generados por bloques, corrección sin modificar el original, referencias a la propia clase, paquetes inválidos, límites de nombre, compatibilidad del formato de salas y resultados con clases homónimas en paquetes diferentes. Se mantienen las 62 pruebas anteriores.
+- Eclipse ECJ compila dos clases `Duel` en paquetes distintos a través de `ArenaBridge.compileNamed`, la entrada usada por el navegador. La copia conserva su constructor y una referencia cualificada a sí misma. Ambas participan juntas en 100 fotogramas del Robocode original. La prueba se incorpora a `scripts/verify_blocks_java.mjs` y conserva su registro en el directorio de build.
+- La detección de duplicados precede al arranque de la JVM. La identidad no reconocida se deja al compilador para evitar confundir errores sintácticos con una clase repetida. No se cambian los identificadores de la API de Robocode ni el formato del servicio de salas.

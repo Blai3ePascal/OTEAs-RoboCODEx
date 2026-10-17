@@ -43,6 +43,14 @@ public final class ArenaBridge {
     String name=cls.group(1), pkg="";
     Matcher pm=Pattern.compile("(?m)^\\s*package\\s+([\\w.]+)\\s*;").matcher(source);
     if(pm.find())pkg=pm.group(1);
+    return compileNamed(source,classPath,(pkg.isEmpty()?"":pkg+".")+name);
+  }
+  // The editor supplies the inspected declaration; ECJ remains authoritative.
+  // Keep the two-argument entry point for existing integrations and smoke tests.
+  public static String compileNamed(String source,String classPath,String identity) throws Exception {
+    if(identity==null||identity.isEmpty())return compile(source,classPath);
+    if(!identity.matches("[\\p{javaJavaIdentifierStart}][\\p{javaJavaIdentifierPart}]*(?:\\.[\\p{javaJavaIdentifierStart}][\\p{javaJavaIdentifierPart}]*)*"))return "ERROR: identificador Java no válido.";
+    int split=identity.lastIndexOf('.');String name=identity.substring(split+1),pkg=split<0?"":identity.substring(0,split);
     File robots=new File(home,"robots"), path=new File(robots,pkg.replace('.',File.separatorChar));path.mkdirs();
     File file=new File(path,name+".java");
     Files.write(file.toPath(), source.getBytes("UTF-8"));

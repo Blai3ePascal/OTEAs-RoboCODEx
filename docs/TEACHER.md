@@ -55,3 +55,15 @@ El evento Recibe un disparo (`onHitByBullet`) y Golpea otro carro de combate (`o
 La XP existente se conserva, una práctica repetida no entrega XP otra vez y cada distintivo sólo recompensa una vez. Los niveles dan títulos y paletas visuales; no alteran energía, daño, velocidad ni reglas. La ficha descargable es un registro local de práctica para acompañar el proyecto del alumno.
 
 En Opciones puedes previsualizar una explosión sin ejecutar ni puntuar una batalla. Puedes elegir tres estilos de fuego y explosión, colores, escala, duración y activar o desactivar restos y humo. El modo calma conserva su función.
+
+## Identidad Java y clases repetidas
+
+El nombre visible del carro es un alias. La identidad Java es `paquete.Clase`: `aula.Nova` y `equipo2.Nova` son distintos; dos carros llamados Azul y Rojo con `aula.Nova` entran en conflicto si se seleccionan juntos.
+
+1. Abre el carro en Taller y lee la ficha Identidad Java.
+2. Usa Ver declaración para localizar exactamente el nombre de la clase en el código, o consultar el Java de los bloques.
+3. Ante un duplicado, pulsa Preparar identidad única y revisa el identificador propuesto.
+4. Aplica la propuesta y valida Java antes de competir. En bloques se conserva el programa y se ajusta el alias que genera la clase; en Java se conserva el alias y se distingue el paquete.
+5. Puedes deshacer el cambio durante la sesión si no has realizado después otras ediciones en ese carro. Para conservar una copia completa, exporta el proyecto.
+
+La propuesta conserva constructores y órdenes, y ajusta referencias explícitas a la propia clase. Si el programa usa otras clases del paquete anterior, revisa sus imports. Los comentarios y cadenas no se reescriben: usos dinámicos como `Class.forName("aula.Nova")` requieren revisión manual. Si hay escapes Unicode o una declaración ambigua, se conserva el borrador y la corrección guiada pide edición directa. El compilador original sigue siendo la comprobación final.

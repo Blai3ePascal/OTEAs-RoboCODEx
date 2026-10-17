@@ -131,3 +131,11 @@ Para comprobar la destrucción con datos del motor original, importa [esta repet
 En Arena, **Pantalla completa** amplía el campo y lleva los controles, competidores y telemetría a una columna derecha. **Ocultar panel** libera ese espacio; **Mostrar panel**, **Salir** o Escape permiten volver. Si el navegador restringe la API de pantalla completa, funciona una vista ampliada dentro de la ventana. Los mismos controles conservan los permisos de las salas y la partida en marcha.
 
 En Arena web, los eventos de bloques interrumpen la orden pendiente en el turno de detección. Un primer bloque Disparar responde en ese mismo turno; las órdenes que consumen tiempo comienzan en el siguiente, sin avanzar dos veces la física. Las detecciones pendientes se atienden antes de reanudar la orden suspendida. El motor Robocode original conserva sus propias reglas.
+
+### Ver y distinguir clases Java
+
+En **Taller → Identidad Java** se muestran la clase, el paquete y el identificador completo, también para los bloques. **Ver declaración** selecciona la clase en el editor Java o abre el Java generado desde bloques. El alias del carro y su clase pueden ser distintos.
+
+Al preparar una partida o torneo con el motor original, cada participante muestra su identificador. Si hay duplicados, el aviso indica los carros y la clase compartida, antes de cargar la JVM. **Revisar en taller → Preparar identidad única** muestra la propuesta antes de aplicarla: en Java se cambia el paquete; en bloques se propone un nombre que genere otra clase. Se puede revisar el código, elegir otro paquete válido y deshacer el cambio durante la sesión mientras no se haya vuelto a editar ese carro. Las copias nuevas reciben una identidad libre cuando la declaración permite hacerlo con seguridad.
+
+En salas, el organizador ve la identidad de los participantes cuyo código recibe. Si un carro inscrito entra en conflicto, su creador debe distinguirlo en el taller y volver a inscribirlo. El formato compartido sigue usando el código y los bloques existentes.

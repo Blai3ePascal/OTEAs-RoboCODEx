@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+import {blocksJava} from './core.js';
+const IDENT=/^[$_\p{ID_Start}][$_\u200c\u200d\p{ID_Continue}]*$/u;
+const RESERVED=new Set('abstract assert boolean break byte case catch char class const continue default do double else enum extends final finally float for goto if implements import instanceof int interface long native new package private protected public return short static strictfp super switch synchronized this throw throws transient try void volatile while true false null _'.split(' '));
+// Retain offsets, and ignore comments, strings, chars and Java text blocks.
+// This is declaration inspection; the real compiler still validates the program.
+export function javaTokens(source){const tokens=[];const pattern=/\/\*[\s\S]*?(?:\*\/|$)|\/\/[^\r\n]*|"""(?:\\[\s\S]|(?!""")[\s\S])*?(?:"""|$)|"(?:\\[\s\S]|[^"\\])*?(?:"|$)|'(?:\\[\s\S]|[^'\\])*?(?:'|$)|[$_\p{ID_Start}][$_\u200c\u200d\p{ID_Continue}]*|[^\s]/gu;for(const m of source.matchAll(pattern)){if(m[0].startsWith('//')||m[0].startsWith('/*')||m[0][0]==='"'||m[0][0]==="'")continue;tokens.push({text:m[0],start:m.index,end:m.index+m[0].length});}return tokens;}
+export function inspectJava(source){const tokens=javaTokens(source);let depth=0,isPublic=false,pkg='',packageStart=null,packageEnd=null,classes=[];
+ for(let i=0;i<tokens.length;i++){const t=tokens[i],v=t.text;if(v==='{'){depth++;continue;}if(v==='}'){depth--;if(depth===0)isPublic=false;continue;}if(depth!==0)continue;
+  if(v==='package'){let j=i+1,parts=[];while(tokens[j]&&tokens[j].text!==';'){parts.push(tokens[j].text);j++;}if(tokens[j]&&parts.length%2===1&&parts.every((s,k)=>k%2===0?IDENT.test(s):s==='.')){pkg=parts.join('');packageStart=t.start;packageEnd=tokens[j].end;}i=j;isPublic=false;continue;}
+  if(v==='public')isPublic=true;if(v==='class'&&isPublic&&IDENT.test(tokens[i+1]?.text||'')){classes.push(tokens[i+1]);isPublic=false;}if(v===';')isPublic=false;
+ }
+ if(classes.length!==1)return null;const c=classes[0];return {className:c.text,packageName:pkg,fullName:(pkg?pkg+'.':'')+c.text,classStart:c.start,classEnd:c.end,packageStart,packageEnd,line:source.slice(0,c.start).split('\n').length};}
+const identityCache=new WeakMap();
+export function javaIdentity(t){if(!['java','blocks'].includes(t.language))return null;const key=t.language==='blocks'?'blocks:'+t.name:'java:'+t.code,old=identityCache.get(t);if(old?.key===key)return old.value;const value=inspectJava(t.language==='blocks'?blocksJava(t.blocks,t.name,t.color):t.code);identityCache.set(t,{key,value});return value;}
+export function javaConflicts(tanks){const groups=new Map();for(const tank of tanks){const identity=javaIdentity(tank);if(!identity)continue;if(!groups.has(identity.fullName))groups.set(identity.fullName,[]);groups.get(identity.fullName).push(tank);}return [...groups].filter(([,rows])=>rows.length>1).map(([fullName,tanks])=>({fullName,tanks}));}
+export function conflictMessage(conflicts){return conflicts.map(g=>'Clase Java repetida '+g.fullName+': '+g.tanks.map(t=>t.name+(t.creator?' ('+t.creator+')':'')).join(' · ')+'.').join('\n')+' Abre «Identidad Java» en el taller para distinguirlas, o selecciona solo uno de esos carros.';}
+export function validPackage(value){return value.length<=180&&value.split('.').every(s=>IDENT.test(s)&&!RESERVED.has(s));}
+export function changeJavaPackage(source,nextPackage){const info=inspectJava(source);if(!info)throw Error('Localiza primero una única declaración public class en el código.');if(!validPackage(nextPackage))throw Error('Paquete no válido. Usa nombres separados por puntos, por ejemplo aula.equipo2.');if(/\\u+[a-f\d]{4}/i.test(source))throw Error('Este código usa escapes Unicode. Edita el paquete directamente y valida Java.');if(nextPackage===info.packageName)return source;
+ const edits=[];if(info.packageStart!==null)edits.push({start:info.packageStart,end:info.packageEnd,text:'package '+nextPackage+';'});else edits.push({start:source.charCodeAt(0)===0xfeff?1:0,end:source.charCodeAt(0)===0xfeff?1:0,text:'package '+nextPackage+';\n'});
+ // Update explicitly qualified self references, including imports, without touching
+ // strings/comments, constructor names, variable names or other classes.
+ if(info.packageName){const target=info.fullName.split('.').flatMap((s,i)=>i?['.',s]:[s]),tokens=javaTokens(source);for(let i=0;i<=tokens.length-target.length;i++){if(tokens[i-1]?.text==='.')continue;if(target.every((s,j)=>tokens[i+j].text===s)){const first=tokens[i],last=tokens[i+target.length-1];if(first.start>=info.packageStart&&first.start<info.packageEnd)continue;edits.push({start:first.start,end:last.end,text:nextPackage+'.'+info.className});i+=target.length-1;}}}
+ const updated=edits.sort((a,b)=>b.start-a.start).reduce((s,e)=>s.slice(0,e.start)+e.text+s.slice(e.end),source);if(updated.length>100000)throw Error('La propuesta supera el límite de 100 KB de código. Reduce el archivo antes de cambiar el paquete.');return updated;}
+export function uniqueIdentityPlan(t,others){const before=javaIdentity(t);if(!before)throw Error('No se reconoce la clase Java. Revisa su declaración en el editor.');const occupied=new Set(others.filter(v=>v!==t).map(javaIdentity).filter(Boolean).map(v=>v.fullName));
+ if(t.language==='blocks'){for(let n=2;n<10000;n++){const suffix=' '+n,name=t.name.slice(0,40-suffix.length)+suffix,next={...t,name};const after=javaIdentity(next);if(!occupied.has(after.fullName))return {before,after,name,code:t.code,language:t.language};}}
+ else{for(let n=2;n<10000;n++){const pkg=(before.packageName||'otea.robots')+'.copia'+n;if(!occupied.has(pkg+'.'+before.className)){const code=changeJavaPackage(t.code,pkg);return {before,after:inspectJava(code),name:t.name,code,language:t.language};}}}
+ throw Error('No se ha encontrado una identidad libre. Elige otro nombre en el editor.');}
+export function javaSource(t){return t.language==='blocks'?blocksJava(t.blocks,t.name,t.color):t.code;}
+export function javaResultIndex(name,identities){const actual=String(name||'').replace(/\*+$/,'');return identities.indexOf(actual);}
